@@ -107,7 +107,7 @@ function MobileAccordion({
           onClick={onNavigate}
           className={[
             "flex-1 rounded-l-2xl px-4 py-3 text-sm transition-colors",
-            active ? "bg-secondary text-title font-medium" : "text-content hover:bg-secondary hover:text-title",
+            active ? "bg-secondary text-title font-medium" : "text-content hover:bg-primary hover:text-white",
           ].join(" ")}
         >
           {title}
@@ -117,7 +117,7 @@ function MobileAccordion({
           onClick={onToggle}
           className={[
             "flex w-12 items-center justify-center rounded-r-2xl transition-colors",
-            active ? "bg-secondary text-title" : "text-content hover:bg-secondary hover:text-title",
+            active ? "bg-secondary text-title" : "text-content hover:bg-primary hover:text-white",
           ].join(" ")}
           aria-label={`Toggle ${title} submenu`}
           aria-expanded={isOpen}
@@ -146,7 +146,7 @@ function MobileAccordion({
                       "rounded-xl px-3 py-2 text-sm transition-colors",
                       itemActive
                         ? "bg-secondary text-title font-medium"
-                        : "text-content hover:bg-secondary hover:text-title",
+                        : "text-content hover:bg-primary hover:text-white",
                     ].join(" ")}
                   >
                     {item.name}
@@ -234,8 +234,8 @@ export const Header = () => {
             <Link
               to="/"
               className={[
-                "rounded-xl px-4 py-2 text-sm transition-colors hover:bg-secondary",
-                pathname === "/" ? "text-title font-medium" : "text-content hover:text-title",
+                "rounded-xl px-4 py-2 text-sm transition-colors hover:bg-primary",
+                pathname === "/" ? "text-title font-medium" : "text-content hover:text-white",
               ].join(" ")}
             >
               Home
@@ -253,8 +253,8 @@ export const Header = () => {
                     <Link
                       to={group.href}
                       className={[
-                        "rounded-l-xl px-4 py-2 text-sm transition-colors hover:bg-secondary",
-                        groupActive ? "text-title font-medium" : "text-content hover:text-title",
+                        "rounded-l-xl px-4 py-2 text-sm transition-colors hover:bg-primary",
+                        groupActive ? "text-title font-medium" : "text-content hover:text-white",
                       ].join(" ")}
                     >
                       {group.name}
@@ -264,8 +264,8 @@ export const Header = () => {
                       <button
                         type="button"
                         className={[
-                          "rounded-r-xl px-2 py-2 text-sm transition-colors hover:bg-secondary",
-                          groupActive ? "text-title" : "text-content hover:text-title",
+                          "rounded-r-xl px-2 py-2 text-sm transition-colors hover:bg-primary",
+                          groupActive ? "text-title" : "text-content hover:text-white",
                         ].join(" ")}
                         aria-label={`Open ${group.name} menu`}
                       >
@@ -291,8 +291,8 @@ export const Header = () => {
             <Link
               to="/contact-us/"
               className={[
-                "rounded-xl px-4 py-2 text-sm transition-colors hover:bg-secondary",
-                isActivePath(pathname, "/contact-us/") ? "text-title font-medium" : "text-content hover:text-title",
+                "rounded-xl px-4 py-2 text-sm transition-colors hover:bg-primary",
+                isActivePath(pathname, "/contact-us/") ? "text-title font-medium" : "text-content hover:text-white",
               ].join(" ")}
             >
               Contact Us
@@ -310,7 +310,7 @@ export const Header = () => {
 
             <button
               type="button"
-              className="rounded-xl p-2 text-title hover:bg-secondary lg:hidden"
+              className="rounded-xl p-2 text-title hover:bg-primary lg:hidden"
               onClick={() => setMobileMenuOpen((v) => !v)}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
@@ -340,7 +340,7 @@ export const Header = () => {
                       onClick={() => setMobileMenuOpen(false)}
                       className={[
                         "rounded-2xl border border-outline bg-card px-4 py-3 text-sm transition-colors",
-                        active ? "bg-secondary text-title font-medium" : "text-content hover:bg-secondary hover:text-title",
+                        active ? "bg-secondary text-title font-medium" : "text-content hover:bg-primary hover:text-white",
                       ].join(" ")}
                     >
                       {link.name}
