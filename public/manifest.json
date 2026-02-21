@@ -1,0 +1,13 @@
+{
+  "name": "Brisbane Roof Painting Solutions",
+  "short_name": "Brisbane Roof Painting Solutions",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone"
+}

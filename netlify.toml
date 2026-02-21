@@ -1,0 +1,14 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# CRÍTICO: Redirect para SPA - Todas las rutas deben servir index.html
+# Esto permite que React Router maneje el routing del lado del cliente
+# Status 200 = rewrite invisible (la URL se mantiene, no hay redirección visible)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

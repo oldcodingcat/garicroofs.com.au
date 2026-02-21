@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Netlify Forms - Hidden forms for detection -->
+    <form name="main-quote" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="main-quote" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="address" />
+      <textarea name="message"></textarea>
+    </form>
+
+    <form name="service-quote" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="service-quote" />
+      <input type="hidden" name="service" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="address" />
+      <textarea name="message"></textarea>
+    </form>
+
+    <form name="contact-us" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact-us" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <select name="service">
+        <option value="">Select a service</option>
+        <option value="terracotta">Clay Terracotta Tiles</option>
+        <option value="metal">Metal Roof Restoration</option>
+        <option value="flat">Flat Concrete Roof</option>
+        <option value="decramastic">Decramastic Tiles</option>
+        <option value="concrete">Concrete Tiles</option>
+        <option value="other">Other / Not Sure</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>

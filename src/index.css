@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 97%;
+    --foreground: 200 5% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 5% 12%;
+
+    --card-secondary: 0 0% 98%;
+    --card-secondary-foreground: 200 5% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 5% 12%;
+
+    --primary: 198 11% 23%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 98%;
+    --secondary-foreground: 200 5% 12%;
+
+    --muted: 0 0% 98%;
+    --muted-foreground: 195 2% 44%;
+
+    --accent: 198 11% 23%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 98%;
+    --input: 0 0% 90%;
+    --ring: 198 11% 23%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --title: 200 5% 12%;
+    --content: 195 2% 44%;
+    --wrapper: 0 0% 98%;
+    --outline: 0 0% 98%;
+    --icon: 192 5% 20%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 98%) 0%, hsl(0 0% 95%) 100%);
+    --gradient-card-overlay: linear-gradient(180deg, transparent 0%, hsla(200, 5%, 12%, 0.85) 100%);
+    --gradient-glass: linear-gradient(135deg, hsla(0, 0%, 100%, 0.9) 0%, hsla(0, 0%, 100%, 0.7) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsla(200, 5%, 12%, 0.05);
+    --shadow-md: 0 4px 6px -1px hsla(200, 5%, 12%, 0.08), 0 2px 4px -2px hsla(200, 5%, 12%, 0.05);
+    --shadow-lg: 0 10px 15px -3px hsla(200, 5%, 12%, 0.08), 0 4px 6px -4px hsla(200, 5%, 12%, 0.05);
+    --shadow-xl: 0 20px 25px -5px hsla(200, 5%, 12%, 0.1), 0 8px 10px -6px hsla(200, 5%, 12%, 0.05);
+    --shadow-float: 0 25px 50px -12px hsla(200, 5%, 12%, 0.15);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 195 2% 44%;
+    --sidebar-primary: 198 11% 23%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent-foreground: 200 5% 12%;
+    --sidebar-border: 0 0% 95%;
+    --sidebar-ring: 198 11% 23%;
+  }
+
+  .dark {
+    --background: 200 5% 12%;
+    --foreground: 0 0% 98%;
+
+    --card: 200 8% 15%;
+    --card-foreground: 0 0% 98%;
+
+    --card-secondary: 200 6% 18%;
+    --card-secondary-foreground: 0 0% 98%;
+
+    --popover: 200 8% 15%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 200 5% 12%;
+
+    --secondary: 200 6% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 200 6% 20%;
+    --muted-foreground: 195 2% 60%;
+
+    --accent: 200 6% 20%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 200 6% 20%;
+    --input: 200 6% 20%;
+    --ring: 0 0% 80%;
+
+    --title: 0 0% 98%;
+    --content: 195 2% 70%;
+    --wrapper: 200 6% 18%;
+    --outline: 200 6% 20%;
+    --icon: 0 0% 85%;
+
+    --sidebar-background: 200 5% 12%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 200 5% 12%;
+    --sidebar-accent: 200 6% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 200 6% 18%;
+    --sidebar-ring: 0 0% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-light antialiased;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-normal text-title tracking-tight;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  p {
+    @apply text-content leading-relaxed;
+    font-family: 'Manrope', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/80;
+  }
+
+  .floating-card {
+    @apply bg-card rounded-2xl shadow-lg border border-outline;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-4 py-1.5 rounded-full text-sm font-normal bg-white text-muted-foreground border border-outline;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .text-title {
+    color: hsl(var(--title));
+  }
+
+  .text-content {
+    color: hsl(var(--content));
+  }
+
+  .bg-wrapper {
+    background-color: hsl(var(--wrapper));
+  }
+
+  .text-icon {
+    color: hsl(var(--icon));
+  }
+
+  /* Infinite scroll animation for projects gallery */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 25s linear infinite;
+  }
+
+  .animate-scroll:hover,
+  .pause-animation {
+    animation-play-state: paused;
+  }
+}
