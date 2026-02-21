@@ -4,114 +4,115 @@
 
 @layer base {
   :root {
-    --background: 0 0% 97%;
-    --foreground: 200 5% 12%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 200 5% 12%;
-
-    --card-secondary: 0 0% 98%;
-    --card-secondary-foreground: 200 5% 12%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 200 5% 12%;
-
-    --primary: 198 11% 23%;
+    /* Brand palette (Garic) */
+    --primary: 26 77% 50%; /* #e2721d */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 98%;
-    --secondary-foreground: 200 5% 12%;
+    --secondary: 323 99% 70%; /* #fe66c4 */
+    --secondary-foreground: 23 60% 7%; /* warm dark */
 
-    --muted: 0 0% 98%;
-    --muted-foreground: 195 2% 44%;
+    /* Warm neutrals based on logo */
+    --background: 30 44% 96%; /* #faf6f2 */
+    --foreground: 23 60% 7%; /* #1c0f07 */
 
-    --accent: 198 11% 23%;
+    --card: 0 0% 100%;
+    --card-foreground: 23 60% 7%;
+
+    --card-secondary: 32 38% 92%; /* #f3ece4 */
+    --card-secondary-foreground: 23 60% 7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 23 60% 7%;
+
+    --muted: 32 38% 92%;
+    --muted-foreground: 20 26% 18%; /* #3a2a22 */
+
+    --accent: 26 77% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 98%;
-    --input: 0 0% 90%;
-    --ring: 198 11% 23%;
+    --border: 28 26% 87%; /* #e7ded6 */
+    --input: 28 26% 87%;
+    --ring: 26 77% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0.85rem;
 
-    /* Custom tokens */
-    --title: 200 5% 12%;
-    --content: 195 2% 44%;
-    --wrapper: 0 0% 98%;
-    --outline: 0 0% 98%;
-    --icon: 192 5% 20%;
+    /* Custom tokens (used across UI) */
+    --title: 23 60% 7%;
+    --content: 20 26% 18%;
+    --wrapper: 32 38% 92%;
+    --outline: 28 26% 87%;
+    --icon: 20 26% 18%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 98%) 0%, hsl(0 0% 95%) 100%);
-    --gradient-card-overlay: linear-gradient(180deg, transparent 0%, hsla(200, 5%, 12%, 0.85) 100%);
-    --gradient-glass: linear-gradient(135deg, hsla(0, 0%, 100%, 0.9) 0%, hsla(0, 0%, 100%, 0.7) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(30 44% 96%) 0%, hsl(32 38% 92%) 100%);
+    --gradient-card-overlay: linear-gradient(180deg, transparent 0%, hsla(23, 60%, 7%, 0.82) 100%);
+    --gradient-glass: linear-gradient(135deg, hsla(0, 0%, 100%, 0.92) 0%, hsla(0, 0%, 100%, 0.72) 100%);
 
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsla(200, 5%, 12%, 0.05);
-    --shadow-md: 0 4px 6px -1px hsla(200, 5%, 12%, 0.08), 0 2px 4px -2px hsla(200, 5%, 12%, 0.05);
-    --shadow-lg: 0 10px 15px -3px hsla(200, 5%, 12%, 0.08), 0 4px 6px -4px hsla(200, 5%, 12%, 0.05);
-    --shadow-xl: 0 20px 25px -5px hsla(200, 5%, 12%, 0.1), 0 8px 10px -6px hsla(200, 5%, 12%, 0.05);
-    --shadow-float: 0 25px 50px -12px hsla(200, 5%, 12%, 0.15);
+    /* Shadows (warmer) */
+    --shadow-sm: 0 1px 2px 0 hsla(23, 60%, 7%, 0.05);
+    --shadow-md: 0 4px 6px -1px hsla(23, 60%, 7%, 0.08), 0 2px 4px -2px hsla(23, 60%, 7%, 0.05);
+    --shadow-lg: 0 10px 15px -3px hsla(23, 60%, 7%, 0.10), 0 4px 6px -4px hsla(23, 60%, 7%, 0.06);
+    --shadow-xl: 0 20px 25px -5px hsla(23, 60%, 7%, 0.12), 0 8px 10px -6px hsla(23, 60%, 7%, 0.06);
+    --shadow-float: 0 25px 50px -12px hsla(23, 60%, 7%, 0.18);
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 195 2% 44%;
-    --sidebar-primary: 198 11% 23%;
+    /* Sidebar tokens (kept for shadcn consistency) */
+    --sidebar-background: 30 44% 96%;
+    --sidebar-foreground: 20 26% 18%;
+    --sidebar-primary: 26 77% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 95%;
-    --sidebar-accent-foreground: 200 5% 12%;
-    --sidebar-border: 0 0% 95%;
-    --sidebar-ring: 198 11% 23%;
+    --sidebar-accent: 32 38% 92%;
+    --sidebar-accent-foreground: 23 60% 7%;
+    --sidebar-border: 28 26% 87%;
+    --sidebar-ring: 26 77% 50%;
   }
 
   .dark {
-    --background: 200 5% 12%;
-    --foreground: 0 0% 98%;
+    /* If you later enable dark mode, these are safe defaults */
+    --background: 23 60% 7%;
+    --foreground: 30 44% 96%;
 
-    --card: 200 8% 15%;
-    --card-foreground: 0 0% 98%;
+    --card: 20 26% 12%;
+    --card-foreground: 30 44% 96%;
 
-    --card-secondary: 200 6% 18%;
-    --card-secondary-foreground: 0 0% 98%;
+    --card-secondary: 20 26% 14%;
+    --card-secondary-foreground: 30 44% 96%;
 
-    --popover: 200 8% 15%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 20 26% 12%;
+    --popover-foreground: 30 44% 96%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 200 5% 12%;
+    --primary: 26 77% 55%;
+    --primary-foreground: 23 60% 7%;
 
-    --secondary: 200 6% 20%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 323 99% 70%;
+    --secondary-foreground: 23 60% 7%;
 
-    --muted: 200 6% 20%;
-    --muted-foreground: 195 2% 60%;
+    --muted: 20 26% 14%;
+    --muted-foreground: 32 38% 85%;
 
-    --accent: 200 6% 20%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 26 77% 55%;
+    --accent-foreground: 23 60% 7%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --border: 20 26% 18%;
+    --input: 20 26% 18%;
+    --ring: 26 77% 55%;
 
-    --border: 200 6% 20%;
-    --input: 200 6% 20%;
-    --ring: 0 0% 80%;
+    --title: 30 44% 96%;
+    --content: 32 38% 85%;
+    --wrapper: 20 26% 14%;
+    --outline: 20 26% 18%;
+    --icon: 32 38% 85%;
 
-    --title: 0 0% 98%;
-    --content: 195 2% 70%;
-    --wrapper: 200 6% 18%;
-    --outline: 200 6% 20%;
-    --icon: 0 0% 85%;
-
-    --sidebar-background: 200 5% 12%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 0 0% 98%;
-    --sidebar-primary-foreground: 200 5% 12%;
-    --sidebar-accent: 200 6% 18%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 200 6% 18%;
-    --sidebar-ring: 0 0% 80%;
+    --sidebar-background: 23 60% 7%;
+    --sidebar-foreground: 30 44% 96%;
+    --sidebar-primary: 26 77% 55%;
+    --sidebar-primary-foreground: 23 60% 7%;
+    --sidebar-accent: 20 26% 14%;
+    --sidebar-accent-foreground: 30 44% 96%;
+    --sidebar-border: 20 26% 14%;
+    --sidebar-ring: 26 77% 55%;
   }
 }
 
@@ -126,17 +127,22 @@
 
   body {
     @apply bg-background text-foreground font-light antialiased;
-    font-family: 'Manrope', sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-normal text-title tracking-tight;
-    font-family: 'Manrope', sans-serif;
+    font-family: "Oswald", "Inter", system-ui, sans-serif;
   }
 
   p {
     @apply text-content leading-relaxed;
-    font-family: 'Manrope', sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
   }
 }
 

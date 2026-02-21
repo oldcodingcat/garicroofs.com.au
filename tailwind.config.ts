@@ -14,7 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Manrope', 'sans-serif'],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        heading: ["Oswald", "Inter", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -75,8 +76,8 @@ export default {
         "3xl": "1.5rem",
       },
       boxShadow: {
-        'float': 'var(--shadow-float)',
-        'card': 'var(--shadow-lg)',
+        float: "var(--shadow-float)",
+        card: "var(--shadow-lg)",
       },
       keyframes: {
         "accordion-down": {
