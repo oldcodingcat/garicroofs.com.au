@@ -102,9 +102,9 @@ const Index = () => {
         <Header />
         <main>
           <Hero />
+          <WhyChooseUs />
           <Offerings />
           <ServicesShowcase />
-          <WhyChooseUs />
           <ColourVisualizer />
           <MidCTA />
           <Process />

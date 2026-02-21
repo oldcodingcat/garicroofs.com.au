@@ -1,119 +1,116 @@
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Plus, Minus } from "lucide-react";
+import { useState } from "react";
+import { Plus, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import beforeAfter from "@/assets/before-after-roof.jpg";
-import heroImage from "@/assets/hero-roof-painting.jpg";
-import terracottaRoof from "@/assets/terracotta-roof.jpg";
-
-const images = [beforeAfter, heroImage, terracottaRoof];
+const IMAGE_URL =
+  "/public/images/garic-roofs-20-plus-years-of-experience.webp";
 
 const accordionItems = [
   {
-    title: "Australian-Made for Australian Conditions",
+    title: "Affordable Service",
     content:
-      "Our premium roof coatings are specifically formulated to withstand Brisbane's harsh UV rays, tropical storms, and humidity. Every product we use is Australian-made and rigorously tested for our unique climate conditions.",
+      "At Garic Roofs, our top priority is delivering exceptional service of the highest quality while keeping it affordable for our customers. We recognize that roofing projects can be significant financial investments, which is why we are dedicated to collaborating with you to discover solutions that align with your budget.\n\nOur pricing is competitive, ensuring that you receive the best value for your hard-earned money. Whether it’s a minor repair or a complete roof replacement, we’ve got you covered with our reasonable rates and flexible payment plans. Your satisfaction and financial comfort matter to us, and we’re here to provide the best roofing services tailored to your needs.",
   },
   {
-    title: "Complete Roof System Solutions",
+    title: "Local Company You Can Trust",
     content:
-      "We don't just paint roofs—we restore them. Our comprehensive approach includes thorough cleaning, repairs, priming, and multi-coat application to ensure long-lasting protection and stunning results.",
+      "Unlike certain national chains, Garic Roofs stands out as a locally-owned and operated business with a solid track record of serving our community for over two decades. Our team of certified professionals is unwavering in its commitment to delivering the utmost level of service and craftsmanship.\n\nCustomer satisfaction is our foremost priority, and we take immense pride in the quality of our workmanship and the excellence of our customer service. Throughout the years, we have earned a reputation for providing top-notch work at a price that is friendly to your budget. We are confident that the results of our services will leave you thoroughly pleased.",
   },
   {
-    title: "Genuine Fade Resistance Guarantee",
+    title: "Professionalism At Its Best",
     content:
-      "Our advanced colour technology ensures your roof maintains its vibrant appearance for years. Backed by our fade resistance guarantee, you can trust your investment is protected against the Queensland sun.",
+      "At Garic Roofs, professionalism forms the very foundation of our success. Our team comprises exclusively of seasoned and certified professionals who possess the expertise to execute your roofing project with meticulous care and precision.\n\nUsing only the finest materials available, we strictly adhere to industry standards and continually keep ourselves abreast of the latest roofing technologies and techniques. This commitment guarantees that your project benefits from cutting-edge advancements.\n\nWe place great emphasis on meeting your roofing needs and providing you with the highest quality of service. Our experienced staff undergoes extensive training and holds the necessary certifications to ensure that your roofing job is carried out with skill and precision, delivering exceptional results. You can trust us to handle your roofing project with utmost professionalism and expertise.",
   },
 ];
 
 export const WhyChooseUs = () => {
-  const [currentImage, setCurrentImage] = useState(0);
   const [openItem, setOpenItem] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextImage = () => setCurrentImage((prev) => (prev + 1) % images.length);
-  const prevImage = () => setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
 
   return (
     <section className="section-padding bg-wrapper">
       <div className="container-custom">
-        <div className="mx-auto mb-12 max-w-2xl text-center">
-          <span className="badge mb-6 border border-[#9a9c9e]">Why Choose Us</span>
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <span className="badge mb-6 border border-[#9a9c9e]">
+            Our top priority is delivering exceptional service
+          </span>
           <h2 className="mb-4 text-2xl font-normal sm:text-3xl md:text-4xl">
-            Why Brisbane Homeowners Choose Us
+            About Garic Roofs
           </h2>
-          <p className="text-lg">
-            As one of Brisbane's most trusted roof painting specialists, we've built our reputation on 
-            quality workmanship and exceptional customer service.
-          </p>
+
+          <p>
+                For over two decades, Garic Roofs has been the trusted name in
+                quality roofing services for homeowners in our area. Our
+                certified professionals are dedicated to exceeding customer
+                expectations with their expert workmanship. Whether you need a
+                complete roof replacement or a minor repair, we offer a
+                comprehensive range of roofing services, specializing in shingle,
+                metal, and flat roof installations.
+              </p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
+          {/* Fixed image (replaces slider) */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100"
           >
-            <AnimatePresence initial={false}>
-              <motion.img
-                key={currentImage}
-                src={images[currentImage]}
-                alt="Our professional roof painting work"
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </AnimatePresence>
-
-            <button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-card/80 p-2 shadow-md backdrop-blur-sm transition-all hover:bg-card"
-            >
-              <ChevronLeft className="h-5 w-5 text-title" />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-card/80 p-2 shadow-md backdrop-blur-sm transition-all hover:bg-card"
-            >
-              <ChevronRight className="h-5 w-5 text-title" />
-            </button>
-
-            <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
-              {images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImage(index)}
-                  className={`h-2 rounded-full transition-all ${
-                    index === currentImage ? "w-8 bg-card" : "w-2 bg-card/50"
-                  }`}
-                />
-              ))}
-            </div>
+            <img
+              src={IMAGE_URL}
+              alt="Garic Roofs"
+              className="absolute inset-0 h-full w-full object-contain"
+              loading="lazy"
+            />
           </motion.div>
 
+          {/* Content + dropdowns (keep original dropdown design) */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="rounded-2xl bg-card p-6 md:p-8"
           >
-            <h3 className="mb-2 text-2xl font-normal">
-              Quality You Can Trust
-            </h3>
-            <p className="mb-6">
-              We combine industry-leading products with expert application 
-              techniques to deliver results that stand the test of time.
-            </p>
+            <div className="space-y-4">
 
+              <p>
+                Rest assured, all our services come with a full satisfaction
+                guarantee. Throughout the project, our experienced staff will be
+                available to address any questions you may have. We take pride in
+                using only the finest materials and adhering strictly to the
+                highest industry standards. Keeping up-to-date with the latest
+                roofing technologies and techniques ensures that your project
+                benefits from the most advanced practices available.
+              </p>
+
+              <p>
+                At Garic Roofs, we are committed to delivering excellent customer
+                service at a fair price. Contact us today for a complimentary
+                estimate on any of our roofing services, and discover why we are
+                your trusted local roofer.
+              </p>
+
+              <p>
+                With every leak fix and repair, we provide a warranty against
+                defects. Upon completing roof repairs or restoration, you’ll be
+                covered by a 7-year warranty against existing roof leaks. While we
+                always strive for a 99% success rate in sourcing and repairing roof
+                leaks, we acknowledge that leak detection can be challenging. If we
+                don’t find the leak the first time, we’ll persist until it’s
+                resolved, or you’ll receive a money-back guarantee.
+              </p>
+
+              <p>
+                We proudly serve Melbourne, Laverton, Oakleigh, the Prahran,
+                Chadstone, and the Moonee Ponds, and we’re the only roof repair
+                company in the area that will refund your quoted price if we can’t
+                detect and rectify the water ingress issue.
+              </p>
+            </div>
+
+            <h3 className="mt-8 mb-4 text-2xl font-normal">Why Choose Us?</h3>
+
+            {/* Dropdowns - keep original styles */}
             <div className="space-y-4">
               {accordionItems.map((item, index) => (
                 <div
@@ -123,6 +120,7 @@ export const WhyChooseUs = () => {
                   <button
                     onClick={() => setOpenItem(openItem === index ? -1 : index)}
                     className="flex w-full items-center justify-between p-4 text-left"
+                    type="button"
                   >
                     <span className="font-medium text-title">{item.title}</span>
                     {openItem === index ? (
@@ -131,6 +129,7 @@ export const WhyChooseUs = () => {
                       <Plus className="h-5 w-5 shrink-0 text-icon" />
                     )}
                   </button>
+
                   <AnimatePresence>
                     {openItem === index && (
                       <motion.div
@@ -140,9 +139,14 @@ export const WhyChooseUs = () => {
                         transition={{ duration: 0.2 }}
                         className="overflow-hidden"
                       >
-                        <p className="px-4 pb-4 text-sm leading-relaxed">
-                          {item.content}
-                        </p>
+                        {item.content.split("\n\n").map((para, i) => (
+                          <p
+                            key={i}
+                            className="px-4 pb-4 text-sm leading-relaxed"
+                          >
+                            {para}
+                          </p>
+                        ))}
                       </motion.div>
                     )}
                   </AnimatePresence>
