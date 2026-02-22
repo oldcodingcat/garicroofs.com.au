@@ -3,7 +3,7 @@ import { Plus, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const IMAGE_URL =
-  "/public/images/garic-roofs-20-plus-years-of-experience.webp";
+  "https://garicroofs.com.au/wp-content/uploads/2022/02/Group-2-5.png";
 
 const accordionItems = [
   {
@@ -23,7 +23,7 @@ const accordionItems = [
   },
 ];
 
-export const WhyChooseUs = () => {
+export const AboutUs = () => {
   const [openItem, setOpenItem] = useState(0);
 
   return (
@@ -31,21 +31,11 @@ export const WhyChooseUs = () => {
       <div className="container-custom">
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <span className="badge mb-6 border border-[#9a9c9e]">
-            Our top priority is delivering exceptional service
+            About Garic Roofs
           </span>
           <h2 className="mb-4 text-2xl font-normal sm:text-3xl md:text-4xl">
             About Garic Roofs
           </h2>
-
-          <p>
-                For over two decades, Garic Roofs has been the trusted name in
-                quality roofing services for homeowners in our area. Our
-                certified professionals are dedicated to exceeding customer
-                expectations with their expert workmanship. Whether you need a
-                complete roof replacement or a minor repair, we offer a
-                comprehensive range of roofing services, specializing in shingle,
-                metal, and flat roof installations.
-              </p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
@@ -64,14 +54,25 @@ export const WhyChooseUs = () => {
             />
           </motion.div>
 
-          {/* Content + dropdowns (keep original dropdown design) */}
+          {/* Content + dropdowns */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="rounded-2xl bg-card p-6 md:p-8"
           >
+            <h3 className="mb-4 text-2xl font-normal">About Garic Roofs</h3>
+
             <div className="space-y-4">
+              <p>
+                For over two decades, Garic Roofs has been the trusted name in
+                quality roofing services for homeowners in our area. Our
+                certified professionals are dedicated to exceeding customer
+                expectations with their expert workmanship. Whether you need a
+                complete roof replacement or a minor repair, we offer a
+                comprehensive range of roofing services, specializing in shingle,
+                metal, and flat roof installations.
+              </p>
 
               <p>
                 Rest assured, all our services come with a full satisfaction
@@ -140,10 +141,7 @@ export const WhyChooseUs = () => {
                         className="overflow-hidden"
                       >
                         {item.content.split("\n\n").map((para, i) => (
-                          <p
-                            key={i}
-                            className="px-4 pb-4 text-sm leading-relaxed"
-                          >
+                          <p key={i} className="px-4 pb-4 text-sm leading-relaxed">
                             {para}
                           </p>
                         ))}

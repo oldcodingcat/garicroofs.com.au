@@ -4,8 +4,8 @@ import { Footer } from "@/components/layout/Footer";
 import { FloatingBanner } from "@/components/layout/FloatingBanner";
 import { Hero } from "@/components/home/Hero";
 import { Offerings } from "@/components/home/Offerings";
-import { ServicesShowcase } from "@/components/home/ServicesShowcase";
-import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { RoofPaintingServices } from "@/components/home/RoofPaintingServices";
+import { AboutUs } from "@/components/home/AboutUs";
 import { ColourVisualizer } from "@/components/home/ColourVisualizer";
 import { MidCTA } from "@/components/home/MidCTA";
 import { Process } from "@/components/home/Process";
@@ -102,9 +102,9 @@ const Index = () => {
         <Header />
         <main>
           <Hero />
-          <WhyChooseUs />
+          <AboutUs />
           <Offerings />
-          <ServicesShowcase />
+          <RoofPaintingServices />
           <ColourVisualizer />
           <MidCTA />
           <Process />
