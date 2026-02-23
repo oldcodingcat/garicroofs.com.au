@@ -3,7 +3,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingBanner } from "@/components/layout/FloatingBanner";
 import { Hero } from "@/components/home/Hero";
-import { Offerings } from "@/components/home/Offerings";
+import { WhatDoWeDo } from "@/components/home/WhatDoWeDo";
 import { RoofPaintingServices } from "@/components/home/RoofPaintingServices";
 import { AboutUs } from "@/components/home/AboutUs";
 import { ColourVisualizer } from "@/components/home/ColourVisualizer";
@@ -103,8 +103,8 @@ const Index = () => {
         <main>
           <Hero />
           <AboutUs />
-          <Offerings />
           <RoofPaintingServices />
+          <WhatDoWeDo />
           <ColourVisualizer />
           <MidCTA />
           <Process />
