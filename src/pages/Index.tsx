@@ -7,6 +7,7 @@ import { WhatDoWeDo } from "@/components/home/WhatDoWeDo";
 import { RoofPaintingServices } from "@/components/home/RoofPaintingServices";
 import { AboutUs } from "@/components/home/AboutUs";
 import { ColourVisualizer } from "@/components/home/ColourVisualizer";
+import { Testimonials } from "@/components/home/Testimonials";
 import { MidCTA } from "@/components/home/MidCTA";
 import { Process } from "@/components/home/Process";
 import { ProjectsShowcase } from "@/components/home/ProjectsShowcase";
@@ -106,10 +107,11 @@ const Index = () => {
           <RoofPaintingServices />
           <WhatDoWeDo />
           <ColourVisualizer />
-          <MidCTA />
+          <Testimonials />
+          {/* <MidCTA />
           <Process />
           <ProjectsShowcase />
-          <FAQ />
+          <FAQ /> */}
           <CTA />
         </main>
         <Footer />

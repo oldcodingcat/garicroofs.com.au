@@ -45,11 +45,13 @@ export const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="mb-4">
-              <img 
-                src="/images/logofooter.svg" 
-                alt="Brisbane Roof Painting Solutions" 
-                className="h-12 w-auto"
-              />
+              <Link to="/" className="flex items-center gap-3" aria-label="Go to home">
+                <img
+                  src="/images/garic-roofs-logo-footer.webp"
+                  alt="Garic Roofs"
+                  className="h-10 w-auto object-contain sm:h-12"
+                />
+              </Link>
             </div>
             <p className="text-sm text-primary-foreground/70 mb-6 leading-relaxed">
               Brisbane's trusted roof painting specialists. Transforming roofs 

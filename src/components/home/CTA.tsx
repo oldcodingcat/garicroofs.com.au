@@ -67,13 +67,11 @@ export const CTA = () => {
             </span>
 
             <h2 className="mx-auto mb-4 max-w-2xl text-2xl font-normal text-primary-foreground sm:text-3xl md:text-4xl lg:text-5xl">
-              Ready to Transform Your Roof?
+              Ready to Protect and Improve Your Roof?
             </h2>
 
             <p className="mx-auto mb-8 max-w-xl text-primary-foreground/80">
-              Brisbane Roof Painting Solutions delivers exceptional roof painting solutions
-              tailored to Brisbane's unique climate, crafted with expertise and
-              designed to last.
+              Garic Roofs delivers reliable roof repairs, restoration, and maintenance services across Melbourne. Backed by experienced tradespeople and quality materials, our solutions are built to withstand local conditions and stand the test of time.
             </p>
 
             <form
@@ -169,7 +167,7 @@ export const CTA = () => {
             </form>
 
             <p className="mt-8 text-sm text-primary-foreground/60">
-              Your Roof, Reimagined with Quality and Care
+              Quality Roofing Solutions, Delivered with Care and Precision
             </p>
           </div>
         </motion.div>
