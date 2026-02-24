@@ -130,8 +130,7 @@ export const ColourVisualizer = () => {
         </motion.div>
 
         <p className="mt-6 text-center text-sm">
-          Can't find the colour you're looking for? We offer custom colour 
-          matching to achieve your perfect shade.
+          Not seeing your ideal colour? We’ll help you create the perfect finish with our custom colour matching service.
         </p>
       </div>
     </section>

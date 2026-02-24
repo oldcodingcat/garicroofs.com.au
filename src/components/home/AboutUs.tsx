@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { Plus, Minus, ShieldCheck, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const IMAGE_URL =
@@ -29,127 +29,150 @@ export const AboutUs = () => {
   return (
     <section className="section-padding bg-wrapper">
       <div className="container-custom">
+        {/* Section header */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <span className="badge mb-6 border border-[#9a9c9e]">
-            About Garic Roofs
-          </span>
+          <span className="badge mb-6 border border-[#9a9c9e]">About Garic Roofs</span>
           <h2 className="mb-4 text-2xl font-normal sm:text-3xl md:text-4xl">
             About Garic Roofs
           </h2>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Fixed image (replaces slider) */}
+        {/* Layout: make it feel less “wide” and more balanced */}
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+          {/* LEFT COLUMN: Image + “use the empty space” content */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -18 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100"
+            className="lg:col-span-5"
           >
-            <img
-              src={IMAGE_URL}
-              alt="Garic Roofs"
-              className="absolute inset-0 h-full w-full object-contain"
-              loading="lazy"
-            />
-          </motion.div>
-
-          {/* Content + dropdowns */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl bg-card p-6 md:p-8"
-          >
-            <h3 className="mb-4 text-2xl font-normal">About Garic Roofs</h3>
-
-            <div className="space-y-4">
-              <p>
-                For over two decades, Garic Roofs has been the trusted name in
-                quality roofing services for homeowners in our area. Our
-                certified professionals are dedicated to exceeding customer
-                expectations with their expert workmanship. Whether you need a
-                complete roof replacement or a minor repair, we offer a
-                comprehensive range of roofing services, specializing in shingle,
-                metal, and flat roof installations.
-              </p>
-
-              <p>
-                Rest assured, all our services come with a full satisfaction
-                guarantee. Throughout the project, our experienced staff will be
-                available to address any questions you may have. We take pride in
-                using only the finest materials and adhering strictly to the
-                highest industry standards. Keeping up-to-date with the latest
-                roofing technologies and techniques ensures that your project
-                benefits from the most advanced practices available.
-              </p>
-
-              <p>
-                At Garic Roofs, we are committed to delivering excellent customer
-                service at a fair price. Contact us today for a complimentary
-                estimate on any of our roofing services, and discover why we are
-                your trusted local roofer.
-              </p>
-
-              <p>
-                With every leak fix and repair, we provide a warranty against
-                defects. Upon completing roof repairs or restoration, you’ll be
-                covered by a 7-year warranty against existing roof leaks. While we
-                always strive for a 99% success rate in sourcing and repairing roof
-                leaks, we acknowledge that leak detection can be challenging. If we
-                don’t find the leak the first time, we’ll persist until it’s
-                resolved, or you’ll receive a money-back guarantee.
-              </p>
-
-              <p>
-                We proudly serve Melbourne, Laverton, Oakleigh, the Prahran,
-                Chadstone, and the Moonee Ponds, and we’re the only roof repair
-                company in the area that will refund your quoted price if we can’t
-                detect and rectify the water ingress issue.
-              </p>
+            {/* Image card: remove forced aspect ratio so we don't get dead space */}
+            <div className="rounded-2xl bg-card shadow-sm border border-outline overflow-hidden">
+              <div className="bg-wrapper p-4 sm:p-6">
+                <img
+                  src={IMAGE_URL}
+                  alt="Garic Roofs"
+                  className="w-full h-auto object-contain"
+                  loading="lazy"
+                />
+              </div>
             </div>
 
-            <h3 className="mt-8 mb-4 text-2xl font-normal">Why Choose Us?</h3>
-
-            {/* Dropdowns - keep original styles */}
-            <div className="space-y-4">
-              {accordionItems.map((item, index) => (
-                <div
-                  key={item.title}
-                  className="overflow-hidden rounded-xl border border-outline bg-card-secondary"
-                >
-                  <button
-                    onClick={() => setOpenItem(openItem === index ? -1 : index)}
-                    className="flex w-full items-center justify-between p-4 text-left"
-                    type="button"
-                  >
-                    <span className="font-medium text-title">{item.title}</span>
-                    {openItem === index ? (
-                      <Minus className="h-5 w-5 shrink-0 text-icon" />
-                    ) : (
-                      <Plus className="h-5 w-5 shrink-0 text-icon" />
-                    )}
-                  </button>
-
-                  <AnimatePresence>
-                    {openItem === index && (
-                      <motion.div
-                        initial={{ height: 0 }}
-                        animate={{ height: "auto" }}
-                        exit={{ height: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden"
-                      >
-                        {item.content.split("\n\n").map((para, i) => (
-                          <p key={i} className="px-4 pb-4 text-sm leading-relaxed">
-                            {para}
-                          </p>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+            {/* The “empty space” below image: move existing content here as cards */}
+            <div className="mt-6 space-y-4">
+              <div className="rounded-2xl bg-card p-5 border border-outline shadow-sm">
+                <div className="mb-3 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10">
+                    <ShieldCheck className="h-5 w-5 text-title" />
+                  </div>
+                  <p className="m-0 font-medium text-title">Warranty & Leak Guarantee</p>
                 </div>
-              ))}
+                <p className="m-0 text-sm leading-relaxed text-content">
+                  With every leak fix and repair, we provide a warranty against defects.
+                  Upon completing roof repairs or restoration, you’ll be covered by a 7-year
+                  warranty against existing roof leaks. While we always strive for a 99%
+                  success rate in sourcing and repairing roof leaks, we acknowledge that leak
+                  detection can be challenging. If we don’t find the leak the first time,
+                  we’ll persist until it’s resolved, or you’ll receive a money-back guarantee.
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-card p-5 border border-outline shadow-sm">
+                <div className="mb-3 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10">
+                    <MapPin className="h-5 w-5 text-title" />
+                  </div>
+                  <p className="m-0 font-medium text-title">Service Areas</p>
+                </div>
+                <p className="m-0 text-sm leading-relaxed text-content">
+                  We proudly serve Melbourne, Laverton, Oakleigh, the Prahran, Chadstone,
+                  and the Moonee Ponds, and we’re the only roof repair company in the area
+                  that will refund your quoted price if we can’t detect and rectify the water
+                  ingress issue.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* RIGHT COLUMN: Main copy + dropdowns */}
+          <motion.div
+            initial={{ opacity: 0, x: 18 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-7"
+          >
+            <div className="rounded-2xl bg-card p-6 md:p-8 border border-outline shadow-sm">
+              <h3 className="mb-4 text-2xl font-normal">About Garic Roofs</h3>
+
+              {/* Keep copy the same, but constrain readability */}
+              <div className="space-y-4 max-w-2xl">
+                <p>
+                  For over two decades, Garic Roofs has been the trusted name in quality
+                  roofing services for homeowners in our area. Our certified professionals
+                  are dedicated to exceeding customer expectations with their expert workmanship.
+                  Whether you need a complete roof replacement or a minor repair, we offer a
+                  comprehensive range of roofing services, specializing in shingle, metal, and
+                  flat roof installations.
+                </p>
+
+                <p>
+                  Rest assured, all our services come with a full satisfaction guarantee.
+                  Throughout the project, our experienced staff will be available to address
+                  any questions you may have. We take pride in using only the finest materials
+                  and adhering strictly to the highest industry standards. Keeping up-to-date
+                  with the latest roofing technologies and techniques ensures that your project
+                  benefits from the most advanced practices available.
+                </p>
+
+                <p>
+                  At Garic Roofs, we are committed to delivering excellent customer service at
+                  a fair price. Contact us today for a complimentary estimate on any of our
+                  roofing services, and discover why we are your trusted local roofer.
+                </p>
+              </div>
+
+              <h3 className="mt-8 mb-4 text-2xl font-normal">Why Choose Us?</h3>
+
+              {/* Dropdowns - keep original styles */}
+              <div className="space-y-4">
+                {accordionItems.map((item, index) => (
+                  <div
+                    key={item.title}
+                    className="overflow-hidden rounded-xl border border-outline bg-card-secondary"
+                  >
+                    <button
+                      onClick={() => setOpenItem(openItem === index ? -1 : index)}
+                      className="flex w-full items-center justify-between p-4 text-left"
+                      type="button"
+                    >
+                      <span className="font-medium text-title">{item.title}</span>
+                      {openItem === index ? (
+                        <Minus className="h-5 w-5 shrink-0 text-icon" />
+                      ) : (
+                        <Plus className="h-5 w-5 shrink-0 text-icon" />
+                      )}
+                    </button>
+
+                    <AnimatePresence>
+                      {openItem === index && (
+                        <motion.div
+                          initial={{ height: 0 }}
+                          animate={{ height: "auto" }}
+                          exit={{ height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          {item.content.split("\n\n").map((para, i) => (
+                            <p key={i} className="px-4 pb-4 text-sm leading-relaxed">
+                              {para}
+                            </p>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>

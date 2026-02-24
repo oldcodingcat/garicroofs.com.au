@@ -2,25 +2,32 @@ import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
 
 const services = [
-  { name: "Clay Terracotta Tiles", href: "/services/terracotta-tiles" },
-  { name: "Metal Roof Restoration", href: "/services/metal-roof" },
-  { name: "Flat Concrete Roof", href: "/services/flat-concrete" },
-  { name: "Decramastic Tiles", href: "/services/decramastic" },
-  { name: "Concrete Tiles", href: "/services/concrete-tiles" },
-  { name: "Industrial Coatings", href: "/services/industrial-coating" },
+  { name: "24/7 Emergency Repairs & Make Safes", href: "/services/24-7-emergency-repairs-make-safes/" },
+  { name: "Metal Pergolas & Patios", href: "services/metal-pergolas-patios/" },
+  { name: "Metal Roofing & Flashings", href: "/services/metal-roofing-flashings/" },
+  { name: "Restoration & Remediation", href: "/services/restoration-remediation/" },
+  { name: "Ridge Capping Restoration", href: "/services/ridge-capping-restoration/" },
+  { name: "Roof Leak", href: "/services/roof-leak/" },
+  { name: "Roof Maintenance", href: "/services/roof-maintenance/" },
+  { name: "Roof Repairs", href: "/services/roof-repairs/" },
+  { name: "Roof Replacement", href: "/services/roof-replacement/" },
+  { name: "Roof Restoration", href: "/services/roof-restoration/" },
+  { name: "Gutter Cleaning", href: "/services/gutter-cleaning/" },
+  { name: "Safety Roof Anchors", href: "/services/safety-roof-anchors/" },  
 ];
 
 const company = [
-  { name: "About Us", href: "/about" },
-  { name: "Projects", href: "/projects" },
-  { name: "Contact", href: "/contact" },
+  { name: "About Us", href: "/about-us/" },
+  { name: "Services", href: "/services/" },
+  { name: "Locations", href: "/locations/" },
+  { name: "Contact", href: "/contact/" },
 ];
 
-const resources = [
-  { name: "FAQs", href: "/#faqs" },
-  { name: "Colour Range", href: "/#colour-options" },
-  { name: "Our Process", href: "/#process" },
-];
+// const resources = [
+//   { name: "FAQs", href: "/#faqs" },
+//   { name: "Colour Range", href: "/#colour-options" },
+//   { name: "Our Process", href: "/#process" },
+// ];
 
 export const Footer = () => {
   const handleLinkClick = () => {
@@ -54,8 +61,7 @@ export const Footer = () => {
               </Link>
             </div>
             <p className="text-sm text-primary-foreground/70 mb-6 leading-relaxed">
-              Brisbane's trusted roof painting specialists. Transforming roofs 
-              across Queensland with quality products and expert craftsmanship.
+              Professional roofing services across Melbourne and surrounding suburbs - from leak detection and repairs to full restoration and replacement, delivered with precision and care.
             </p>
             <div className="flex gap-4">
               <a
@@ -113,7 +119,7 @@ export const Footer = () => {
                 </li>
               ))}
             </ul>
-            <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-white">Resources</h4>
+            {/* <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-white">Resources</h4>
             <ul className="space-y-3">
               {resources.map((item) => (
                 <li key={item.name}>
@@ -126,7 +132,7 @@ export const Footer = () => {
                   </Link>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
 
           {/* Contact */}
@@ -140,9 +146,9 @@ export const Footer = () => {
                     href="tel:0730674287"
                     className="text-sm font-medium hover:underline"
                   >
-                    07 3067 4287
+                    (03) 9961 0678
                   </a>
-                  <p className="text-xs text-primary-foreground/60">Mon-Sat 7am-6pm</p>
+                  <p className="text-xs text-primary-foreground/60">Monday to Sunday - 24 hours</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -158,8 +164,8 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 mt-0.5 text-primary-foreground/70" />
                 <p className="text-sm text-primary-foreground/70">
-                  Servicing all Brisbane suburbs<br />
-                  Brisbane, QLD, Australia
+                  Servicing all Melbourne suburbs<br />
+                  Victoria, Australia
                 </p>
               </li>
             </ul>
