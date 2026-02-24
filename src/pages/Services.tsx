@@ -147,11 +147,10 @@ const Services = () => {
               <div className="mx-auto mb-12 max-w-2xl text-center">
                 <span className="badge mb-6">Our Services</span>
                 <h1 className="mb-4 text-3xl font-normal sm:text-4xl md:text-5xl">
-                  Professional Roof Painting Services
+                  Professional Roofing Services Across Melbourne
                 </h1>
                 <p className="text-lg">
-                  Expert roof painting solutions for every roof type across Brisbane. Quality workmanship backed by
-                  comprehensive warranties.
+                  Expert roof repairs, restoration, maintenance, and replacement solutions tailored to Melbourne properties. Quality workmanship backed by strong warranties and dependable service.
                 </p>
               </div>
             </div>
