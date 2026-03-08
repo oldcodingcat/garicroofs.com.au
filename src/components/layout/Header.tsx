@@ -304,7 +304,7 @@ export const Header = () => {
             <Button className="hidden sm:inline-flex" size="sm" asChild>
               <a href={CALL_NOW_HREF} className="inline-flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                Call Now
+                GET A FREE QUOTE TODAY
               </a>
             </Button>
 

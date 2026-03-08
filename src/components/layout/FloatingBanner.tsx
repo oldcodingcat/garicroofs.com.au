@@ -18,7 +18,7 @@ export const FloatingBanner = () => {
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
           className="fixed bottom-4 left-4 right-4 z-50 sm:bottom-6 sm:left-1/2 sm:right-auto sm:w-[calc(100%-2rem)] sm:max-w-2xl sm:-translate-x-1/2"
         >
-          <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-primary-foreground/10 bg-primary/95 px-3 py-3 sm:px-6 sm:py-4 shadow-float backdrop-blur-md">
+          <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-primary-foreground/10 bg-black/95 px-3 py-3 sm:px-6 sm:py-4 shadow-float backdrop-blur-md">
             <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4 sm:justify-between">
               <p className="text-center text-xs sm:text-sm font-light text-primary-foreground sm:text-left">
                 <span className="font-medium">Need Expert Roof Painting Advice?</span>

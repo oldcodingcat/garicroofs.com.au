@@ -46,7 +46,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-black text-primary-foreground">
       <div className="container-custom py-16">
         <div className="grid gap-8 sm:gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}

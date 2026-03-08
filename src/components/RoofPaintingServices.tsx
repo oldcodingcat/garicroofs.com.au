@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 interface Service {
   title: string;
@@ -88,50 +89,61 @@ const services: Service[] = [
   },
 ];
 
-export type RoofPaintingServicesProps = {
-  /**
-   * When true (default), renders the section heading + intro.
-   * Set to false when the parent page already provides the heading.
-   */
-  showHeader?: boolean;
-};
-
-export const RoofPaintingServices = ({ showHeader = true }: RoofPaintingServicesProps) => {
+export const RoofPaintingServices = () => {
   return (
     <section className="section-padding">
       <div className="container-custom">
-        {showHeader && (
-          <div className="text-center mb-12">
-            <span className="badge mb-6">Roofing Services</span>
-            <h2 className="text-3xl sm:text-4xl">Complete Roofing Solutions Across Melbourne</h2>
-          </div>
-        )}
+        <div className="mx-auto mb-12 max-w-2xl text-center">
+          <span className="badge mb-6 border border-[#9a9c9e]">
+            Roofing Services
+          </span>
+          <h2 className="mb-4 text-2xl font-normal sm:text-3xl md:text-4xl">
+            Complete Roofing Solutions Across Melbourne
+          </h2>
+          <p className="text-lg">
+            Professional roofing services delivered with precision,
+            reliability, and industry-leading workmanship.
+          </p>
+        </div>
 
+        {/* 🔥 3 COLUMN GRID */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
               viewport={{ once: true }}
-              className="rounded-2xl bg-card shadow-md overflow-hidden"
+              transition={{ delay: index * 0.05 }}
             >
-              <img src={service.image} alt={service.title} className="h-56 w-full object-cover" />
+              <Link
+                to={service.link}
+                className="group relative block aspect-[16/10] overflow-hidden rounded-2xl"
+              >
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
 
-              <div className="p-6">
-                <h3 className="text-xl font-medium mb-3 text-title">{service.title}</h3>
+                {/* Bottom Gradient Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6 pt-20">
+                  <div className="flex items-end justify-between">
+                    <div className="flex-1 pr-4">
+                      <h3 className="text-xl font-medium text-white mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-sm text-white/90 leading-relaxed line-clamp-2">
+                        {service.description}
+                      </p>
+                    </div>
 
-                <p className="text-sm leading-relaxed text-content mb-5">{service.description}</p>
-
-                <Button
-                  variant="outline"
-                  className="border-primary text-title hover:bg-primary hover:text-white"
-                  asChild
-                >
-                  <a href={service.link}>Learn More</a>
-                </Button>
-              </div>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all group-hover:bg-white group-hover:text-black">
+                      <ArrowRight className="h-5 w-5" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>
