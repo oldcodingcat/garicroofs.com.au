@@ -14,6 +14,8 @@ import ServiceDetail from "./pages/ServiceDetail";
 import Projects from "./pages/Projects";
 import NotFound from "./pages/NotFound";
 
+import EmergencyRepairsMakeSafesPage from "@/routes/services/24-7-emergency-repairs-make-safes";
+
 const queryClient = new QueryClient();
 
 function ScrollToTop() {
@@ -39,8 +41,9 @@ function AppContent() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/services/24-7-emergency-repairs-make-safes" element={<EmergencyRepairsMakeSafesPage />} />
         <Route path="/services/:serviceId" element={<ServiceDetail />} />
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects" element={<Projects />} />        
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
