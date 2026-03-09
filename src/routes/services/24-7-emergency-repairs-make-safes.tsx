@@ -86,13 +86,51 @@ const content: ServiceContent = {
     ],
   },
 
-  testimonial: {
-    name: "Michael R.",
-    areaName: "Sydney",
+  testimonials: [
+  {
+    name: "James R.",
+    areaName: "Eastern Suburbs",
     quote:
-      "After severe storm damage, Garic Roofs responded immediately and secured our roof overnight. Professional, efficient, and highly recommended.",
+      "We had major roof damage during a storm and needed urgent help. The team arrived quickly and secured the area to prevent further damage. Extremely professional emergency service.",
     rating: 5,
   },
+  {
+    name: "Daniel M.",
+    areaName: "Bondi",
+    quote:
+      "After a storm ripped part of our roof off at 2am, their emergency team arrived quickly and made everything safe before the rain got worse. Professional, calm and very efficient.",
+    rating: 5,
+  },
+  {
+    name: "Sarah L.",
+    areaName: "Parramatta",
+    quote:
+      "We had water pouring through the ceiling after heavy rain. They responded the same night and secured the damaged section immediately. Fantastic emergency service.",
+    rating: 5,
+  },
+  {
+    name: "Michael T.",
+    areaName: "Chatswood",
+    quote:
+      "A fallen tree branch punctured our roof during a storm. Their team arrived fast, removed the debris and installed a temporary make-safe repair to stop further damage.",
+    rating: 5,
+  },
+  {
+    name: "Karen W.",
+    areaName: "Sutherland",
+    quote:
+      "Called them late in the evening after noticing serious roof damage from strong winds. They were on-site within hours and made the area safe until permanent repairs could be completed.",
+    rating: 5,
+  },
+  {
+    name: "Andrew P.",
+    areaName: "Ryde",
+    quote:
+      "During a severe storm we noticed water leaking through our ceiling. Their emergency roofing team arrived quickly, secured the damaged area and prevented further water damage. Reliable and very professional service.",
+    rating: 5,
+  },
+],
+  
 
   cta: {
     heading: "Need Emergency Roof Repairs in Sydney?",
