@@ -97,7 +97,7 @@ const content: ServiceContent = {
   cta: {
     heading: "Need Emergency Roof Repairs in Sydney?",
     text: "Garic Roofs is ready to respond 24/7 to secure and restore your roof. Contact our team now for immediate assistance.",
-    buttonText: "CALL NOW",
+    buttonText: "GET A FREE QUOTE TODAY",
     buttonHref: "/contact/",
   },
 };

@@ -41,7 +41,10 @@ function AppContent() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/services/24-7-emergency-repairs-make-safes" element={<EmergencyRepairsMakeSafesPage />} />
+        <Route
+    path="/services/24-7-emergency-repairs-make-safes"
+    element={<EmergencyRepairsMakeSafesPage />}
+  />
         <Route path="/services/:serviceId" element={<ServiceDetail />} />
         <Route path="/projects" element={<Projects />} />        
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

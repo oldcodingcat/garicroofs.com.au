@@ -1,45 +1,28 @@
 // src/routes/services/ServiceTemplate.tsx
 import type { Route } from "react-router";
 import { useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { Helmet } from "react-helmet-async";
 
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import FloatingBanner from "@/components/layout/FloatingBanner";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { FloatingBanner } from "@/components/layout/FloatingBanner";
 
-import FaqSection from "@/components/FaqSection";
-import ContentBlock3 from "@/components/ContentBlock3";
-
-import { submitNetlifyForm } from "@/lib/netlifyForm";
+// import { submitNetlifyForm } from "@/lib/netlifyForm";
 
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Phone, Send } from "lucide-react";
 
-/**
- * ✅ Adaptación para el proyecto actual:
- * - URLs por defecto: /services/<service-slug>/
- * - Mantiene el patrón: Template (layout + SEO) + Page mínima (config/content)
- * - Incluye variables de ubicación, meta tags y JSON-LD
- */
-
 export type ServiceSEOConfig = {
-  serviceName: string; // e.g. "Roof Painting"
-  serviceSlug: string; // e.g. "roof-painting"
-
-  // Ubicación / área (puede ser ciudad, suburb, región)
-  areaName: string; // e.g. "Sydney"
-  areaSlug: string; // e.g. "sydney"
-  latitude: string; // "-33.8688"
-  longitude: string; // "151.2093"
-
-  state?: string; // default: "NSW"
-  country?: string; // default: "Australia"
-
-  // Ruta final (si quieres controlar el path exacto)
-  // Ej: "/services/roof-painting/" ó "/roof-painting/" (si fueras a usar otro formato)
+  serviceName: string;
+  serviceSlug: string;
+  areaName: string;
+  areaSlug: string;
+  latitude: string;
+  longitude: string;
+  state?: string;
+  country?: string;
   path?: string;
-
-  // Hero background (opcional)
-  heroBg?: string; // e.g. "/images/hero-roof.webp"
+  heroBg?: string;
 };
 
 export type ServiceContent = {
@@ -49,57 +32,45 @@ export type ServiceContent = {
     titleBottom: string;
     bullets: string[];
   };
-
   intro: {
     heading: string;
     paragraphs: string[];
   };
-
   why: {
     heading: string;
     points: Array<{ title: string; text: string }>;
   };
-
   process: {
     heading: string;
     steps: Array<{ title: string; text: string }>;
   };
-
   testimonial: {
     name: string;
     areaName: string;
     quote: string;
-    rating?: number; // default 5
+    rating?: number;
   };
-
   cta: {
     heading: string;
     text: string;
-    buttonText?: string; // default: "GET QUOTE"
-    buttonHref?: string; // default: "/contact/"
+    buttonText?: string;
+    buttonHref?: string;
   };
 };
 
-/**
- * IMPORTANT:
- * Ajusta estos defaults al proyecto actual.
- * Si tienes un archivo de config global (site.ts / constants), puedes reemplazar DEFAULTS
- * por imports desde ahí.
- */
 const DEFAULTS = {
-  baseUrl: "https://garicroofs.com.au", // <-- cambia si el dominio final es otro
-  businessName: "Garic Roofs", // <-- cambia al nombre real del negocio
-  phone: "0000000000", // <-- cambia al teléfono real
-  defaultHeroBg: "/images/hero-roof.webp",
+  baseUrl: "https://garicroofs.com.au",
+  businessName: "Garic Roofs",
+  phone: "0399610678",
+  defaultHeroBg: "/images/services/safety-roof-anchors.webp",
 };
 
 function buildPath(cfg: ServiceSEOConfig) {
-  // ✅ Formato requerido: /services/service-name/
   return cfg.path ?? `/services/${cfg.serviceSlug}/`;
 }
 
 function buildSeo(cfg: ServiceSEOConfig) {
-  const state = cfg.state ?? "NSW";
+  const state = cfg.state ?? "VIC";
   const country = cfg.country ?? "Australia";
   const path = buildPath(cfg);
   const canonical = `${DEFAULTS.baseUrl}${path}`;
@@ -131,10 +102,9 @@ function buildSeo(cfg: ServiceSEOConfig) {
 
 function buildJsonLd(cfg: ServiceSEOConfig) {
   const seo = buildSeo(cfg);
-  const state = cfg.state ?? "NSW";
+  const state = cfg.state ?? "VIC";
   const country = cfg.country ?? "Australia";
 
-  // Schema recomendado: Service + Provider (Local business) + Place (geo)
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -193,21 +163,15 @@ export function ServiceSEO({ config }: { config: ServiceSEOConfig }) {
   const jsonLd = useMemo(() => buildJsonLd(config), [config]);
 
   return (
-    <>
-      <SEOHead
-        title={seo.title}
-        description={seo.description}
-        keywords={seo.keywords}
-        ogTitle={seo.ogTitle}
-        ogDescription={seo.ogDescription}
-        schemaType="RoofingContractor"
-        location={config.areaSlug}
-        customName={DEFAULTS.businessName}
-        customDescription={seo.description}
-      />
+    <Helmet>
+      <title>{seo.title}</title>
+      <meta name="description" content={seo.description} />
+      <meta name="keywords" content={seo.keywords} />
+      <meta property="og:title" content={seo.ogTitle} />
+      <meta property="og:description" content={seo.ogDescription} />
       <link rel="canonical" href={seo.canonical} />
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </>
+    </Helmet>
   );
 }
 
@@ -310,7 +274,6 @@ function HeroWithForm({ cfg, content }: { cfg: ServiceSEOConfig; content: Servic
         </div>
       </div>
 
-      {/* Quote card overlap */}
       <div className="container mx-auto px-7 lg:px-14 xl:px-20 relative -mt-16 pb-10">
         <div className="mx-auto max-w-3xl rounded-xl bg-white shadow-[0_18px_40px_rgba(0,0,0,0.25)] overflow-hidden">
           <div className="px-6 pt-6 pb-4 text-center">
@@ -319,7 +282,11 @@ function HeroWithForm({ cfg, content }: { cfg: ServiceSEOConfig; content: Servic
               <span className="text-[#179DC2]">TODAY</span>
             </div>
 
-            {showSuccess && <div className="mt-2 text-sm text-emerald-700">Thanks! We&apos;ll contact you shortly.</div>}
+            {showSuccess && (
+              <div className="mt-2 text-sm text-emerald-700">
+                Thanks! We&apos;ll contact you shortly.
+              </div>
+            )}
           </div>
 
           <form
@@ -331,60 +298,21 @@ function HeroWithForm({ cfg, content }: { cfg: ServiceSEOConfig; content: Servic
             onSubmit={handleSubmit}
             className="px-6 pb-6"
           >
-            {/* Netlify required hidden inputs */}
             <input type="hidden" name="bot-field" />
             <input type="hidden" name="form-name" value={FORM_NAME} />
-
-            {/* Optional: helps Netlify show full name in UI */}
             <input type="hidden" name="fullName" value="" />
-
-            {/* Context for submissions */}
             <input type="hidden" name="serviceName" value={cfg.serviceName} />
             <input type="hidden" name="serviceSlug" value={cfg.serviceSlug} />
             <input type="hidden" name="areaName" value={cfg.areaName} />
             <input type="hidden" name="areaSlug" value={cfg.areaSlug} />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                required
-                className="h-11 rounded-md border border-gray-300 bg-white px-4 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400"
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                required
-                className="h-11 rounded-md border border-gray-300 bg-white px-4 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400"
-              />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone Number"
-                required
-                className="h-11 rounded-md border border-gray-300 bg-white px-4 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                required
-                className="h-11 rounded-md border border-gray-300 bg-white px-4 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400"
-              />
-              <input
-                type="text"
-                name="suburb"
-                placeholder="Suburb"
-                defaultValue={cfg.areaName}
-                className="h-11 rounded-md border border-gray-300 bg-white px-4 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400 md:col-span-2"
-              />
-              <textarea
-                name="issue"
-                placeholder="What seems to be the issue?"
-                className="min-h-[110px] rounded-md border border-gray-300 bg-white px-4 py-3 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400 md:col-span-2"
-              />
+              <input type="text" name="firstName" placeholder="First Name" required className="h-11 rounded-md border border-gray-300 bg-white px-4 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400" />
+              <input type="text" name="lastName" placeholder="Last Name" required className="h-11 rounded-md border border-gray-300 bg-white px-4 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400" />
+              <input type="tel" name="phone" placeholder="Phone Number" required className="h-11 rounded-md border border-gray-300 bg-white px-4 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400" />
+              <input type="email" name="email" placeholder="Email Address" required className="h-11 rounded-md border border-gray-300 bg-white px-4 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400" />
+              <input type="text" name="suburb" placeholder="Suburb" defaultValue={cfg.areaName} className="h-11 rounded-md border border-gray-300 bg-white px-4 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400 md:col-span-2" />
+              <textarea name="issue" placeholder="What seems to be the issue?" className="min-h-[110px] rounded-md border border-gray-300 bg-white px-4 py-3 text-base text-gray-800 placeholder:text-gray-400 outline-none focus:border-gray-400 md:col-span-2" />
             </div>
 
             <button
@@ -415,13 +343,10 @@ export function ServicePageTemplate({ config, content }: { config: ServiceSEOCon
 
       <HeroWithForm cfg={config} content={content} />
 
-      {/* Intro */}
       <Section className="py-14 bg-white">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">{content.intro.heading}</h2>
         <div className="space-y-4 text-sm md:text-base leading-relaxed" style={{ color: "#666666" }}>
-          {content.intro.paragraphs.map((p, idx) => (
-            <p key={idx}>{p}</p>
-          ))}
+          {content.intro.paragraphs.map((p, idx) => <p key={idx}>{p}</p>)}
         </div>
 
         <div className="flex flex-wrap items-center gap-3 mt-6">
@@ -437,22 +362,18 @@ export function ServicePageTemplate({ config, content }: { config: ServiceSEOCon
         </div>
       </Section>
 
-      {/* Why */}
       <Section className="py-14 bg-[#F6F6F6]">
         <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">{content.why.heading}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {content.why.points.map((p) => (
             <div key={p.title} className="bg-white rounded-lg border shadow-sm p-6">
               <div className="font-bold mb-2">{p.title}</div>
-              <div className="text-sm leading-relaxed" style={{ color: "#666666" }}>
-                {p.text}
-              </div>
+              <div className="text-sm leading-relaxed" style={{ color: "#666666" }}>{p.text}</div>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* Process */}
       <Section className="py-14 bg-white">
         <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">{content.process.heading}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -463,16 +384,13 @@ export function ServicePageTemplate({ config, content }: { config: ServiceSEOCon
               </div>
               <div>
                 <div className="font-bold mb-1">{s.title}</div>
-                <div className="text-sm leading-relaxed" style={{ color: "#666666" }}>
-                  {s.text}
-                </div>
+                <div className="text-sm leading-relaxed" style={{ color: "#666666" }}>{s.text}</div>
               </div>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* Testimonial */}
       <Section className="py-12 bg-[#F6F6F6]">
         <h2 className="text-xl md:text-2xl font-bold mb-6 text-center">Customer Review</h2>
         <div className="max-w-2xl mx-auto">
@@ -480,13 +398,10 @@ export function ServicePageTemplate({ config, content }: { config: ServiceSEOCon
         </div>
       </Section>
 
-      {/* CTA */}
       <Section className="py-14 bg-white">
         <div className="rounded-2xl border-2 border-black/70 bg-white shadow-md p-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">{content.cta.heading}</h2>
-          <p className="text-sm md:text-base mb-6" style={{ color: "#666666" }}>
-            {content.cta.text}
-          </p>
+          <p className="text-sm md:text-base mb-6" style={{ color: "#666666" }}>{content.cta.text}</p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Button asChild className="rounded-md">
               <a href={ctaHref}>{ctaText}</a>
@@ -501,30 +416,19 @@ export function ServicePageTemplate({ config, content }: { config: ServiceSEOCon
         </div>
       </Section>
 
-      {/* Reusa bloques globales del sitio */}
-      <ContentBlock3 />
-      <MapWithForm />
-      <FaqSection />
-
       <Footer />
       <FloatingBanner />
     </div>
   );
 }
 
-/**
- * Factory para crear páginas mínimas:
- * const { Page, route } = createServiceRoute(config, content);
- * export const route = route;
- * export default Page;
- */
 export function createServiceRoute(config: ServiceSEOConfig, content: ServiceContent) {
   const seo = buildSeo(config);
 
   const Page = () => <ServicePageTemplate config={config} content={content} />;
 
   const route = {
-    path: seo.path, // ✅ por defecto: /services/<serviceSlug>/
+    path: seo.path,
     element: <Page />,
     handle: {
       title: seo.title,
