@@ -1,10 +1,8 @@
-import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { RoofPaintingServices } from "@/components/RoofPaintingServices";
+
 import { CTA } from "@/components/CTA";
 import { LocationsGrid } from "@/components/locations/LocationsGrid";
-import { FloatingBanner } from "@/components/layout/FloatingBanner";
 
 const locations = [
   { name: "Melbourne", href: "/locations/melbourne/" },
@@ -28,18 +26,15 @@ const locations = [
   { name: "Coburg", href: "/locations/coburg/" },
 ];
 
-export default function LocationsPage() {
+export default function Locations() {
   return (
     <>
       <Header />
 
-      <FloatingBanner />
-
       <main>
-
+        {/* Hero */}
         <section className="bg-[#f8f8f8] py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
             <div className="mx-auto max-w-3xl text-center">
 
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#b08d57]">
@@ -51,18 +46,19 @@ export default function LocationsPage() {
               </h1>
 
               <p className="mt-5 text-base md:text-lg leading-relaxed text-[#666666]">
-                Explore the Melbourne suburbs where we provide professional roofing
-                services. Select a location below to view the dedicated page for
-                that area.
+                We provide professional roofing services across Melbourne and
+                surrounding suburbs. Select a location below to learn more
+                about our services in your area.
               </p>
 
             </div>
-
           </div>
         </section>
 
+        {/* Locations grid */}
         <LocationsGrid locations={locations} />
 
+        {/* CTA */}
         <CTA />
 
       </main>
