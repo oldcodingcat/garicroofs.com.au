@@ -1,9 +1,10 @@
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import FloatingBanner from "@/components/layout/FloatingBanner";
-
-import CTA from "@/components/CTA";
-import LocationsGrid from "@/components/locations/LocationsGrid";
+import { Helmet } from "react-helmet-async";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { RoofPaintingServices } from "@/components/RoofPaintingServices";
+import { CTA } from "@/components/CTA";
+import { LocationsGrid } from "@/components/locations/LocationsGrid";
+import { FloatingBanner } from "@/components/layout/FloatingBanner";
 
 const locations = [
   { name: "Melbourne", href: "/locations/melbourne/" },

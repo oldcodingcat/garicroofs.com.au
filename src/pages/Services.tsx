@@ -3,6 +3,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { RoofPaintingServices } from "@/components/RoofPaintingServices";
 import { CTA } from "@/components/CTA";
+import { FloatingBanner } from "@/components/layout/FloatingBanner";
 
 const Services = () => {
   return (

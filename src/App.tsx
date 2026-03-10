@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
+import Locations from "./pages/Locations";
 import ServiceDetail from "./pages/ServiceDetail";
 import Projects from "./pages/Projects";
 import NotFound from "./pages/NotFound";
@@ -47,6 +48,7 @@ function AppContent() {
   />
         <Route path="/services/:serviceId" element={<ServiceDetail />} />
         <Route path="/projects" element={<Projects />} />        
+        <Route path="/locations" element={<Locations />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
