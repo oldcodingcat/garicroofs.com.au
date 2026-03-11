@@ -2,7 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 import { CTA } from "@/components/CTA";
-import { LocationsGrid } from "@/components/locations/LocationsGrid";
+import LocationsGrid from "@/components/locations/LocationsGrid";
 
 const locations = [
   { name: "Melbourne", href: "/locations/melbourne/" },
