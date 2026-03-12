@@ -174,10 +174,10 @@ export const Header = () => {
 
   const navGroups: NavGroup[] = useMemo(
     () => [
-      { name: "Services", href: "/services/", items: SERVICES },
-      { name: "Locations", href: "/locations/", items: LOCATIONS },
-      { name: "FAQ’s", href: "/faqs/", items: FAQ_GROUP },
-      { name: "About Us", href: "/about-us/", items: ABOUT_GROUP },
+      { name: "Services", href: "#", items: SERVICES },
+      { name: "Locations", href: "#", items: LOCATIONS },
+      { name: "FAQ’s", href: "#", items: FAQ_GROUP },
+      { name: "About Us", href: "#", items: ABOUT_GROUP },
     ],
     []
   );
