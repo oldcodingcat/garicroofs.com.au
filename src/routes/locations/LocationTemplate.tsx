@@ -1,4 +1,4 @@
-// src/routes/services/ServiceTemplate.tsx
+// src/routes/locations/LocationTemplate.tsx
 
 import type { Route } from "react-router";
 import { useMemo, useState, type FormEvent, type ReactNode } from "react";
@@ -12,52 +12,68 @@ import { CTA } from "@/components/CTA";
 import { submitNetlifyForm } from "@/lib/netlifyForm";
 
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Phone, Send } from "lucide-react";
+import { Phone, MapPin, CheckCircle2, Send } from "lucide-react";
 
-export type ServiceSEOConfig = {
-  serviceName: string;
-  serviceSlug: string;
-  areaName: string;
-  areaSlug: string;
+/*
+|--------------------------------------------------------------------------
+| TYPES
+|--------------------------------------------------------------------------
+*/
+
+export type LocationSEOConfig = {
+  locationName: string;
+  locationSlug: string;
+  state: string;
+  country?: string;
   latitude: string;
   longitude: string;
-  state?: string;
-  country?: string;
   path?: string;
   heroBg?: string;
 };
 
-export type ServiceContent = {
+export type LocationContent = {
   hero: {
     eyebrow?: string;
     titleTop: string;
-    titleBottom: string;
+    titleBottom?: string;
+    subtitle: string;
     bullets: string[];
   };
+
   intro: {
     heading: string;
     paragraphs: string[];
   };
-  why: {
+
+  services: {
     heading: string;
-    points: Array<{
+    items: {
       title: string;
       text: string;
-    }>;
+    }[];
   };
-  process: {
+
+  whyChooseUs: {
     heading: string;
-    steps: Array<{
+    points: {
       title: string;
       text: string;
-    }>;
+    }[];
   };
-  testimonials: Array<{
-    name: string;
-    areaName?: string;
-    quote: string;
-    rating?: number;
-  }>;
+
+  areas: {
+    heading: string;
+    items: string[];
+  };
+
+  faq?: {
+    heading: string;
+    items: {
+      question: string;
+      answer: string;
+    }[];
+  };
+
   cta: {
     heading: string;
     text: string;
@@ -66,6 +82,12 @@ export type ServiceContent = {
   };
 };
 
+/*
+|--------------------------------------------------------------------------
+| DEFAULTS
+|--------------------------------------------------------------------------
+*/
+
 const DEFAULTS = {
   baseUrl: "https://garicroofs.com.au",
   businessName: "Garic Roofs",
@@ -73,28 +95,34 @@ const DEFAULTS = {
   defaultHeroBg: "/images/services/safety-roof-anchors.webp",
 };
 
-function buildPath(cfg: ServiceSEOConfig) {
-  return cfg.path ?? `/services/${cfg.serviceSlug}/`;
+/*
+|--------------------------------------------------------------------------
+| HELPERS
+|--------------------------------------------------------------------------
+*/
+
+function buildPath(cfg: LocationSEOConfig) {
+  return cfg.path ?? `/locations/${cfg.locationSlug}/`;
 }
 
-function buildSeo(cfg: ServiceSEOConfig) {
-  const state = cfg.state ?? "VIC";
+function buildSeo(cfg: LocationSEOConfig) {
   const country = cfg.country ?? "Australia";
   const path = buildPath(cfg);
   const canonical = `${DEFAULTS.baseUrl}${path}`;
-  const title = `${cfg.serviceName} ${cfg.areaName} | ${DEFAULTS.businessName}`;
-  const description = `Professional ${cfg.serviceName.toLowerCase()} in ${cfg.areaName}, ${state}, ${country}. Trusted team, quality workmanship, and transparent quotes. Request a free quote today.`;
+
+  const title = `Roofing in ${cfg.locationName} | ${DEFAULTS.businessName}`;
+
+  const description = `Looking for reliable roofing in ${cfg.locationName}, ${cfg.state}? ${DEFAULTS.businessName} provides roof repairs, restoration, replacement and maintenance services across ${cfg.locationName}.`;
 
   const keywords = [
-    `${cfg.serviceName} ${cfg.areaName}`,
-    `${cfg.serviceName} ${state}`,
-    `${cfg.serviceName} near me ${cfg.areaName}`,
-    `${cfg.areaName} roofers`,
-    `${cfg.areaName} roofing company`,
-    `roof services ${cfg.areaName}`,
-  ]
-    .map((k) => k.toLowerCase())
-    .join(", ");
+    `roofing ${cfg.locationName}`,
+    `roof repairs ${cfg.locationName}`,
+    `roof restoration ${cfg.locationName}`,
+    `roof replacement ${cfg.locationName}`,
+    `roofers ${cfg.locationName}`,
+    `${cfg.locationName} roofing company`,
+    `roof maintenance ${cfg.locationName}`,
+  ].join(", ");
 
   return {
     path,
@@ -104,70 +132,110 @@ function buildSeo(cfg: ServiceSEOConfig) {
     keywords,
     ogTitle: title,
     ogDescription: description,
+    country,
   };
 }
 
-function buildJsonLd(cfg: ServiceSEOConfig) {
+function buildJsonLd(cfg: LocationSEOConfig, content: LocationContent) {
   const seo = buildSeo(cfg);
-  const state = cfg.state ?? "VIC";
-  const country = cfg.country ?? "Australia";
+
+  const faqEntities =
+    content.faq?.items?.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })) ?? [];
+
+  const graph: Record<string, unknown>[] = [
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "@id": `${seo.canonical}#business`,
+      name: DEFAULTS.businessName,
+      url: DEFAULTS.baseUrl,
+      telephone: DEFAULTS.phone,
+      areaServed: {
+        "@type": "City",
+        name: cfg.locationName,
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: cfg.country ?? "Australia",
+        addressRegion: cfg.state,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${seo.canonical}#webpage`,
+      url: seo.canonical,
+      name: seo.title,
+      description: seo.description,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Place",
+      "@id": `${seo.canonical}#place`,
+      name: `${cfg.locationName}, ${cfg.state}`,
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: cfg.latitude,
+        longitude: cfg.longitude,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": `${seo.canonical}#service`,
+      name: `Roofing Services in ${cfg.locationName}`,
+      serviceType: "Roofing",
+      provider: {
+        "@id": `${seo.canonical}#business`,
+      },
+      areaServed: {
+        "@type": "City",
+        name: cfg.locationName,
+      },
+      url: seo.canonical,
+      availableChannel: {
+        "@type": "ServiceChannel",
+        servicePhone: DEFAULTS.phone,
+      },
+    },
+  ];
+
+  if (faqEntities.length) {
+    graph.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqEntities,
+    });
+  }
 
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "HomeAndConstructionBusiness",
-        "@id": `${seo.canonical}#business`,
-        name: DEFAULTS.businessName,
-        url: DEFAULTS.baseUrl,
-        telephone: DEFAULTS.phone,
-        address: {
-          "@type": "PostalAddress",
-          addressCountry: country,
-          addressRegion: state,
-        },
-        areaServed: [
-          {
-            "@type": "AdministrativeArea",
-            name: `${cfg.areaName}, ${state}, ${country}`,
-          },
-        ],
-      },
-      {
-        "@type": "Service",
-        "@id": `${seo.canonical}#service`,
-        name: `${cfg.serviceName} in ${cfg.areaName}`,
-        serviceType: cfg.serviceName,
-        areaServed: {
-          "@type": "AdministrativeArea",
-          name: `${cfg.areaName}, ${state}, ${country}`,
-        },
-        provider: {
-          "@id": `${seo.canonical}#business`,
-        },
-        url: seo.canonical,
-        availableChannel: {
-          "@type": "ServiceChannel",
-          servicePhone: DEFAULTS.phone,
-        },
-      },
-      {
-        "@type": "Place",
-        "@id": `${seo.canonical}#place`,
-        name: cfg.areaName,
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: cfg.latitude,
-          longitude: cfg.longitude,
-        },
-      },
-    ],
+    "@graph": graph,
   };
 }
 
-export function ServiceSEO({ config }: { config: ServiceSEOConfig }) {
+/*
+|--------------------------------------------------------------------------
+| SEO COMPONENT
+|--------------------------------------------------------------------------
+*/
+
+function LocationSEO({
+  config,
+  content,
+}: {
+  config: LocationSEOConfig;
+  content: LocationContent;
+}) {
   const seo = buildSeo(config);
-  const jsonLd = useMemo(() => buildJsonLd(config), [config]);
+  const jsonLd = useMemo(() => buildJsonLd(config, content), [config, content]);
 
   return (
     <Helmet>
@@ -188,6 +256,12 @@ export function ServiceSEO({ config }: { config: ServiceSEOConfig }) {
   );
 }
 
+/*
+|--------------------------------------------------------------------------
+| UI HELPERS
+|--------------------------------------------------------------------------
+*/
+
 function Section({
   children,
   className = "",
@@ -202,33 +276,21 @@ function Section({
   );
 }
 
-function TestimonialCard({ t }: { t: ServiceContent["testimonials"][number] }) {
-  const stars = Math.max(1, Math.min(5, t.rating ?? 5));
-
-  return (
-    <div className="rounded-lg border shadow-sm p-6 bg-white h-full">
-      <div className="text-sm font-bold mb-2">{t.name}</div>
-
-      <div className="text-xs text-[#666666] mb-3">
-        {"★".repeat(stars)}
-        {"☆".repeat(5 - stars)}
-        {t.areaName && <span className="ml-2">({t.areaName})</span>}
-      </div>
-
-      <p className="text-sm leading-relaxed text-[#666666]">{t.quote}</p>
-    </div>
-  );
-}
+/*
+|--------------------------------------------------------------------------
+| HERO WITH FORM
+|--------------------------------------------------------------------------
+*/
 
 function HeroWithForm({
   cfg,
   content,
 }: {
-  cfg: ServiceSEOConfig;
-  content: ServiceContent;
+  cfg: LocationSEOConfig;
+  content: LocationContent;
 }) {
   const bg = cfg.heroBg ?? DEFAULTS.defaultHeroBg;
-  const FORM_NAME = "Service form";
+  const FORM_NAME = "Location form";
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -278,14 +340,24 @@ function HeroWithForm({
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-16 md:grid-cols-2 md:py-24">
         <div className="text-white">
           <div className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
-            {content.hero.eyebrow ?? `${content.hero.titleTop} in ${cfg.areaName}`}
+            {content.hero.eyebrow ?? `Roofing Services in ${cfg.locationName}`}
           </div>
 
           <h1 className="text-4xl font-bold leading-tight md:text-5xl text-white">
             {content.hero.titleTop}
-            <br />
-            {content.hero.titleBottom}
+            {content.hero.titleBottom ? (
+              <>
+                <br />
+                {content.hero.titleBottom}
+              </>
+            ) : null}
           </h1>
+
+          {content.hero.subtitle ? (
+            <p className="mt-5 text-base leading-relaxed text-white/90 md:text-lg">
+              {content.hero.subtitle}
+            </p>
+          ) : null}
 
           <div className="mt-6 space-y-3">
             {content.hero.bullets.map((t, idx) => (
@@ -327,8 +399,8 @@ function HeroWithForm({
             className="mt-5"
           >
             <input type="hidden" name="form-name" value={FORM_NAME} />
-            <input type="hidden" name="service" value={cfg.serviceName} />
-            <input type="hidden" name="area" value={cfg.areaName} />
+            <input type="hidden" name="location" value={cfg.locationName} />
+            <input type="hidden" name="state" value={cfg.state} />
             <input type="hidden" name="fullName" />
 
             <div className="grid gap-4 md:grid-cols-2">
@@ -367,7 +439,7 @@ function HeroWithForm({
 
             <textarea
               name="message"
-              placeholder="Tell us about your roofing project"
+              placeholder={`Tell us about your roofing project in ${cfg.locationName}`}
               rows={5}
               className="mt-4 w-full rounded-md border px-3 py-3 text-sm outline-none focus:border-[#169fc3]"
             />
@@ -389,19 +461,25 @@ function HeroWithForm({
   );
 }
 
-export function ServicePageTemplate({
+/*
+|--------------------------------------------------------------------------
+| MAIN PAGE TEMPLATE
+|--------------------------------------------------------------------------
+*/
+
+export function LocationPageTemplate({
   config,
   content,
 }: {
-  config: ServiceSEOConfig;
-  content: ServiceContent;
+  config: LocationSEOConfig;
+  content: LocationContent;
 }) {
   const ctaHref = content.cta.buttonHref ?? "/contact/";
   const ctaText = content.cta.buttonText ?? "GET QUOTE";
 
   return (
     <div className="min-h-screen flex flex-col">
-      <ServiceSEO config={config} />
+      <LocationSEO config={config} content={content} />
       <Header />
       <HeroWithForm cfg={config} content={content} />
 
@@ -435,64 +513,87 @@ export function ServicePageTemplate({
 
       <Section className="py-14 bg-[#F6F6F6]">
         <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-          {content.why.heading}
+          {content.services.heading}
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {content.why.points.map((p) => (
-            <div key={p.title} className="bg-white rounded-lg border shadow-sm p-6">
-              <div className="font-bold mb-2">{p.title}</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {content.services.items.map((s) => (
+            <div key={s.title} className="bg-white rounded-lg border shadow-sm p-6">
+              <div className="font-bold mb-2">{s.title}</div>
               <div
                 className="text-sm leading-relaxed"
                 style={{ color: "#666666" }}
               >
-                {p.text}
+                {s.text}
               </div>
             </div>
           ))}
         </div>
       </Section>
 
-      <Section className="py-14 bg-white">
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-          {content.process.heading}
-        </h2>
+      {content.whyChooseUs?.points?.length ? (
+        <Section className="py-14 bg-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+            {content.whyChooseUs.heading}
+          </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {content.process.steps.map((s, idx) => (
-            <div key={s.title} className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-full bg-[#179DC2] text-white font-bold flex items-center justify-center flex-shrink-0">
-                {idx + 1}
-              </div>
-
-              <div>
-                <div className="font-bold mb-1">{s.title}</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {content.whyChooseUs.points.map((p) => (
+              <div key={p.title} className="bg-white rounded-lg border shadow-sm p-6">
+                <div className="font-bold mb-2">{p.title}</div>
                 <div
                   className="text-sm leading-relaxed"
                   style={{ color: "#666666" }}
                 >
-                  {s.text}
+                  {p.text}
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </Section>
+            ))}
+          </div>
+        </Section>
+      ) : null}
 
-      <Section className="py-12 bg-[#F6F6F6]">
-        <h2 className="text-xl md:text-2xl font-bold mb-6 text-center">
-          Customer Reviews
-        </h2>
+      {content.areas?.items?.length ? (
+        <Section className="py-14 bg-[#F6F6F6]">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+            {content.areas.heading}
+          </h2>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {content.testimonials.map((testimonial, index) => (
-            <TestimonialCard
-              key={`${testimonial.name}-${testimonial.areaName ?? index}`}
-              t={testimonial}
-            />
-          ))}
-        </div>
-      </Section>
+          <div className="flex flex-wrap justify-center gap-3">
+            {content.areas.items.map((area) => (
+              <div
+                key={area}
+                className="inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2 text-sm font-medium shadow-sm"
+              >
+                <MapPin className="h-4 w-4" />
+                {area}
+              </div>
+            ))}
+          </div>
+        </Section>
+      ) : null}
+
+      {content.faq?.items?.length ? (
+        <Section className="py-14 bg-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+            {content.faq.heading}
+          </h2>
+
+          <div className="max-w-4xl mx-auto space-y-4">
+            {content.faq.items.map((item) => (
+              <div
+                key={item.question}
+                className="rounded-lg border shadow-sm p-6 bg-white"
+              >
+                <h3 className="text-lg font-bold mb-2">{item.question}</h3>
+                <p className="text-sm leading-relaxed text-[#666666]">
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Section>
+      ) : null}
 
       <Section className="py-14 bg-white">
         <div className="rounded-2xl border-2 border-black/70 bg-white shadow-md p-8 text-center">
@@ -528,13 +629,19 @@ export function ServicePageTemplate({
   );
 }
 
-export function createServiceRoute(
-  config: ServiceSEOConfig,
-  content: ServiceContent
+/*
+|--------------------------------------------------------------------------
+| ROUTE FACTORY
+|--------------------------------------------------------------------------
+*/
+
+export function createLocationRoute(
+  config: LocationSEOConfig,
+  content: LocationContent
 ) {
   const seo = buildSeo(config);
 
-  const Page = () => <ServicePageTemplate config={config} content={content} />;
+  const Page = () => <LocationPageTemplate config={config} content={content} />;
 
   const route = {
     path: seo.path,

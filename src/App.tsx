@@ -7,13 +7,19 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { FloatingBanner } from "@/components/layout/FloatingBanner";
 import Index from "./pages/Index";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import AboutUs from "./pages/AboutUs";
+import AboutOurProcess from "./pages/AboutOurProcess";
+import CompletedJobs from "./pages/CompletedJobs";
+import ContactUs from "./pages/ContactUs";
 import Services from "./pages/Services";
 import Locations from "./pages/Locations";
+import Faqs from "./pages/Faqs";
+import News from "./pages/News";
 import ServiceDetail from "./pages/ServiceDetail";
 import Projects from "./pages/Projects";
 import NotFound from "./pages/NotFound";
+
+import ToorakLocationPage from "@/routes/locations/toorak";
 
 import EmergencyRepairsMakeSafesPage from "@/routes/services/24-7-emergency-repairs-make-safes";
 
@@ -39,9 +45,13 @@ function AppContent() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/about-our-process" element={<AboutOurProcess />} />
+        <Route path="/completed-jobs" element={<CompletedJobs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/faqs" element={<Faqs />} />
+        <Route path="/news" element={<News />} />
         <Route
     path="/services/24-7-emergency-repairs-make-safes"
     element={<EmergencyRepairsMakeSafesPage />}
@@ -49,6 +59,7 @@ function AppContent() {
         <Route path="/services/:serviceId" element={<ServiceDetail />} />
         <Route path="/projects" element={<Projects />} />        
         <Route path="/locations" element={<Locations />} />
+        <Route path="/locations/toorak/" element={<ToorakLocationPage />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
