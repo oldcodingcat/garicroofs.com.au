@@ -1,13 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { AnimatePresence, motion } from "framer-motion";
 
 type NavItem = {
@@ -72,7 +66,6 @@ const ABOUT_GROUP: NavItem[] = [
 const CALL_NOW_HREF = "tel:0399610678";
 
 function isActivePath(pathname: string, href: string) {
-  // Treat parent sections as active when the path starts with their base.
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(href);
 }
@@ -85,6 +78,7 @@ function MobileAccordion({
   onToggle,
   onNavigate,
   pathname,
+  icon,
 }: {
   title: string;
   href: string;
@@ -93,6 +87,7 @@ function MobileAccordion({
   onToggle: () => void;
   onNavigate: () => void;
   pathname: string;
+  icon?: ReactNode;
 }) {
   const active = useMemo(() => {
     if (isActivePath(pathname, href)) return true;
@@ -106,12 +101,14 @@ function MobileAccordion({
           to={href}
           onClick={onNavigate}
           className={[
-            "flex-1 rounded-l-2xl px-4 py-3 text-sm transition-colors",
+            "flex flex-1 items-center gap-3 rounded-l-2xl px-4 py-3 text-sm transition-colors",
             active ? "bg-secondary text-title font-medium" : "text-content hover:bg-primary hover:text-white",
           ].join(" ")}
         >
-          {title}
+          {icon ? <span className="shrink-0">{icon}</span> : null}
+          <span>{title}</span>
         </Link>
+
         <button
           type="button"
           onClick={onToggle}
@@ -137,6 +134,7 @@ function MobileAccordion({
             <div className="flex flex-col gap-1 px-2 pb-2">
               {items.map((item) => {
                 const itemActive = isActivePath(pathname, item.href);
+
                 return (
                   <Link
                     key={item.href}
@@ -163,6 +161,7 @@ function MobileAccordion({
 
 export const Header = () => {
   const location = useLocation();
+  const pathname = location.pathname;
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -172,12 +171,15 @@ export const Header = () => {
   const [faqsOpen, setFaqsOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
 
+  const [openDesktopDropdown, setOpenDesktopDropdown] = useState<string | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const navGroups: NavGroup[] = useMemo(
     () => [
-      { name: "Services", href: "#", items: SERVICES },
-      { name: "Locations", href: "#", items: LOCATIONS },
-      { name: "FAQ’s", href: "#", items: FAQ_GROUP },
-      { name: "About Us", href: "#", items: ABOUT_GROUP },
+      { name: "Services", href: "/services/", items: SERVICES },
+      { name: "Locations", href: "/locations/", items: LOCATIONS },
+      { name: "FAQ’s", href: "/faqs/", items: FAQ_GROUP },
+      { name: "About Us", href: "/about-us/", items: ABOUT_GROUP },
     ],
     []
   );
@@ -185,11 +187,24 @@ export const Header = () => {
   const navLinks: NavItem[] = useMemo(
     () => [
       { name: "Home", href: "/" },
-      // groups: Services, Locations, FAQ’s, About Us
       { name: "Contact Us", href: "/contact-us/" },
     ],
     []
   );
+
+  const handleDropdownEnter = (name: string) => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setOpenDesktopDropdown(name);
+  };
+
+  const handleDropdownLeave = () => {
+    closeTimer.current = setTimeout(() => {
+      setOpenDesktopDropdown(null);
+    }, 180);
+  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 16);
@@ -199,15 +214,19 @@ export const Header = () => {
   }, []);
 
   useEffect(() => {
-    // Close mobile menu on route change
     setMobileMenuOpen(false);
     setServicesOpen(false);
     setLocationsOpen(false);
     setFaqsOpen(false);
     setAboutOpen(false);
-  }, [location.pathname]);
+    setOpenDesktopDropdown(null);
+  }, [pathname]);
 
-  const pathname = location.pathname;
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
+  }, []);
 
   return (
     <header className="fixed left-0 top-0 right-0 z-50 px-4 py-4">
@@ -219,7 +238,6 @@ export const Header = () => {
         aria-label="Primary"
       >
         <div className="flex items-center justify-between gap-3">
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-3" aria-label="Go to home">
             <img
               src="/images/garic-roofs-logo.png"
@@ -228,9 +246,7 @@ export const Header = () => {
             />
           </Link>
 
-          {/* Desktop Nav */}
           <div className="hidden items-center gap-1 lg:flex">
-            {/* Home */}
             <Link
               to="/"
               className={[
@@ -241,53 +257,76 @@ export const Header = () => {
               Home
             </Link>
 
-            {/* Groups with dropdowns */}
             {navGroups.map((group) => {
               const groupActive =
                 isActivePath(pathname, group.href) ||
                 group.items.some((i) => isActivePath(pathname, i.href));
 
+              const isOpen = openDesktopDropdown === group.name;
+
               return (
-                <DropdownMenu key={group.name}>
-                  <div className="flex items-center">
-                    <Link
-                      to={group.href}
+                <div
+                  key={group.name}
+                  className="relative"
+                  onMouseEnter={() => handleDropdownEnter(group.name)}
+                  onMouseLeave={handleDropdownLeave}
+                >
+                  <Link
+                    to={group.href}
+                    className={[
+                      "inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm transition-colors hover:bg-primary",
+                      groupActive ? "text-title font-medium" : "text-content hover:text-white",
+                    ].join(" ")}
+                    aria-haspopup="menu"
+                    aria-expanded={isOpen}
+                  >
+                    <span>{group.name}</span>
+                    <ChevronDown
                       className={[
-                        "rounded-l-xl px-4 py-2 text-sm transition-colors hover:bg-primary",
-                        groupActive ? "text-title font-medium" : "text-content hover:text-white",
+                        "h-4 w-4 transition-transform duration-200",
+                        isOpen ? "rotate-180" : "",
                       ].join(" ")}
-                    >
-                      {group.name}
-                    </Link>
+                    />
+                  </Link>
 
-                    <DropdownMenuTrigger asChild>
-                      <button
-                        type="button"
-                        className={[
-                          "rounded-r-xl px-2 py-2 text-sm transition-colors hover:bg-primary",
-                          groupActive ? "text-title" : "text-content hover:text-white",
-                        ].join(" ")}
-                        aria-label={`Open ${group.name} menu`}
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.16 }}
+                        className="absolute left-1/2 top-full z-50 mt-2 w-80 -translate-x-1/2"
+                        onMouseEnter={() => handleDropdownEnter(group.name)}
+                        onMouseLeave={handleDropdownLeave}
                       >
-                        <ChevronDown className="h-4 w-4" />
-                      </button>
-                    </DropdownMenuTrigger>
-                  </div>
+                        <div className="overflow-hidden rounded-xl border border-outline bg-card p-2 shadow-xl">
+                          {group.items.map((item) => {
+                            const itemActive = isActivePath(pathname, item.href);
 
-                  <DropdownMenuContent align="center" className="w-80">
-                    {group.items.map((item) => (
-                      <DropdownMenuItem key={item.href} asChild>
-                        <Link to={item.href} className="cursor-pointer">
-                          {item.name}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                            return (
+                              <Link
+                                key={item.href}
+                                to={item.href}
+                                className={[
+                                  "block rounded-lg px-3 py-2 text-sm transition-colors",
+                                  itemActive
+                                    ? "bg-secondary text-title font-medium"
+                                    : "text-content hover:bg-primary hover:text-white",
+                                ].join(" ")}
+                              >
+                                {item.name}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
             })}
 
-            {/* Contact */}
             <Link
               to="/contact-us/"
               className={[
@@ -299,7 +338,6 @@ export const Header = () => {
             </Link>
           </div>
 
-          {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-2 sm:gap-3">
             <Button className="hidden sm:inline-flex" size="sm" asChild>
               <a href={CALL_NOW_HREF} className="inline-flex items-center gap-2">
@@ -320,7 +358,6 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -330,9 +367,9 @@ export const Header = () => {
               className="overflow-hidden lg:hidden"
             >
               <div className="flex flex-col gap-3 pt-4">
-                {/* Simple links */}
                 {navLinks.map((link) => {
                   const active = isActivePath(pathname, link.href);
+
                   return (
                     <Link
                       key={link.href}
@@ -348,7 +385,6 @@ export const Header = () => {
                   );
                 })}
 
-                {/* Accordions */}
                 <MobileAccordion
                   title="Services"
                   href="/services/"
@@ -389,7 +425,6 @@ export const Header = () => {
                   pathname={pathname}
                 />
 
-                {/* Mobile CTA */}
                 <Button className="w-full" asChild>
                   <a href={CALL_NOW_HREF} className="inline-flex items-center justify-center gap-2">
                     <Phone className="h-4 w-4" />

@@ -275,7 +275,7 @@ function HeroWithForm({
         backgroundPosition: "center",
       }}
     >
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-16 md:grid-cols-2 md:py-24">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 pt-28 pb-16 md:grid-cols-2 md:pt-36 md:pb-24">
         <div className="text-white">
           <div className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
             {content.hero.eyebrow ?? `${content.hero.titleTop} in ${cfg.areaName}`}
@@ -290,7 +290,7 @@ function HeroWithForm({
           <div className="mt-6 space-y-3">
             {content.hero.bullets.map((t, idx) => (
               <div key={idx} className="flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#169fc3]" />
+                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#f97316]" />
                 <span>{t}</span>
               </div>
             ))}
@@ -299,7 +299,7 @@ function HeroWithForm({
           <div className="mt-8">
             <a
               href={`tel:${DEFAULTS.phone}`}
-              className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 font-semibold text-black transition hover:bg-[#169fc3] hover:text-white"
+              className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 font-semibold text-black transition hover:bg-[#f97316] hover:text-white"
             >
               <Phone className="h-4 w-4" />
               {DEFAULTS.phone}
@@ -310,7 +310,7 @@ function HeroWithForm({
         <div className="rounded-2xl bg-white p-6 shadow-xl md:p-8">
           <h2 className="text-2xl font-bold leading-tight">
             Request a FREE Quote{" "}
-            <span className="text-[#169fc3]">TODAY</span>
+            <span className="text-[#f97316]">TODAY</span>
           </h2>
 
           {showSuccess && (
@@ -337,14 +337,14 @@ function HeroWithForm({
                 type="text"
                 placeholder="First name"
                 required
-                className="h-11 rounded-md border px-3 text-sm outline-none focus:border-[#169fc3]"
+                className="h-11 rounded-md border px-3 text-sm outline-none focus:border-[#f97316]"
               />
               <input
                 name="lastName"
                 type="text"
                 placeholder="Last name"
                 required
-                className="h-11 rounded-md border px-3 text-sm outline-none focus:border-[#169fc3]"
+                className="h-11 rounded-md border px-3 text-sm outline-none focus:border-[#f97316]"
               />
             </div>
 
@@ -354,14 +354,14 @@ function HeroWithForm({
                 type="email"
                 placeholder="Email"
                 required
-                className="h-11 rounded-md border px-3 text-sm outline-none focus:border-[#169fc3]"
+                className="h-11 rounded-md border px-3 text-sm outline-none focus:border-[#f97316]"
               />
               <input
                 name="phone"
                 type="tel"
                 placeholder="Phone"
                 required
-                className="h-11 rounded-md border px-3 text-sm outline-none focus:border-[#169fc3]"
+                className="h-11 rounded-md border px-3 text-sm outline-none focus:border-[#f97316]"
               />
             </div>
 
@@ -369,13 +369,13 @@ function HeroWithForm({
               name="message"
               placeholder="Tell us about your roofing project"
               rows={5}
-              className="mt-4 w-full rounded-md border px-3 py-3 text-sm outline-none focus:border-[#169fc3]"
+              className="mt-4 w-full rounded-md border px-3 py-3 text-sm outline-none focus:border-[#f97316]"
             />
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full mt-5 h-11 rounded-md bg-[#169fc3] text-center font-semibold tracking-wide text-white shadow-sm transition-colors hover:bg-[#ff1616] disabled:cursor-not-allowed disabled:opacity-70"
+              className="w-full mt-5 h-11 rounded-md bg-[#f97316] text-center font-semibold tracking-wide text-white shadow-sm transition-colors hover:hsl(var(--primary) / 0.9) disabled:cursor-not-allowed disabled:opacity-70"
             >
               <span className="inline-flex items-center justify-center gap-2">
                 <Send className="h-4 w-4" />
@@ -461,7 +461,7 @@ export function ServicePageTemplate({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {content.process.steps.map((s, idx) => (
             <div key={s.title} className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-full bg-[#179DC2] text-white font-bold flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-[#f97316] text-white font-bold flex items-center justify-center flex-shrink-0">
                 {idx + 1}
               </div>
 
