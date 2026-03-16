@@ -21,7 +21,7 @@ export default function AboutOurProcess() {
       <main className="bg-white">
 
         {/* HERO */}
-        <section className="bg-[#0f172a] text-white py-20 px-6">
+        <section className="bg-black text-white pt-40 pb-20 px-6 md:pt-48">
           <div className="max-w-5xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               Our Roofing Process

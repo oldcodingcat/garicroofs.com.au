@@ -22,7 +22,7 @@ export default function AboutUs() {
       <Header />
 
       {/* HERO */}
-      <section className="bg-black text-white py-24">
+      <section className="bg-black text-white pt-40 pb-24 md:pt-48">
         <div className="max-w-6xl mx-auto px-6">
           <p className="uppercase tracking-widest text-sm text-gray-400 mb-4">
             About Our Company

@@ -154,14 +154,10 @@ export default function CompletedJobs() {
       <Header />
 
       <main className="bg-white text-[#1f2937]">
-        <section className="relative overflow-hidden bg-[#0f172a]">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#111827] to-[#1e293b]" />
+        <section className="relative overflow-hidden bg-black pt-20 pb-16 md:pt-26">
+          <div className="absolute inset-0" />
           <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
             <div className="max-w-4xl">
-              <span className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1 text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
-                Proven Roofing Results
-              </span>
-
               <h1 className="max-w-4xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 Completed Roofing Jobs That Show the Quality of Our Work
               </h1>

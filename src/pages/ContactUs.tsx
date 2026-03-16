@@ -99,14 +99,10 @@ export default function ContactUs() {
         <main>
 
           {/* HERO */}
-          <section className="border-b border-border bg-[#0f172a]">
+          <section className="relative overflow-hidden bg-black pt-14 pb-16 md:pt-18">
             <div className="container mx-auto px-4 py-16 md:py-24">
 
               <div className="mx-auto max-w-5xl">
-
-                <span className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary text-white">
-                  Contact Garic Roofs
-                </span>
 
                 <h1 className="text-4xl font-bold tracking-tight md:text-5xl text-white">
                   Contact Our Melbourne Roofing Specialists
