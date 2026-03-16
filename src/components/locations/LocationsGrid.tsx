@@ -22,9 +22,7 @@ export default function LocationsGrid({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         <div className="mx-auto max-w-3xl text-center mb-10 md:mb-14">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#b08d57]">
-            Service Areas
-          </p>
+          <span className="badge mb-6">Our Services</span>
 
           <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-[#1a1a1a]">
             {title}
