@@ -53,12 +53,10 @@ const LOCATIONS: NavItem[] = [
 ];
 
 const FAQ_GROUP: NavItem[] = [
-  { name: "FAQ’s", href: "/faqs/" },
   { name: "News", href: "/news/" },
 ];
 
 const ABOUT_GROUP: NavItem[] = [
-  { name: "About Us", href: "/about-us/" },
   { name: "About our Process", href: "/about-our-process/" },
   { name: "Completed Jobs", href: "/completed-jobs/" },
 ];
