@@ -174,9 +174,9 @@ export default function FAQs() {
       <Header />
 
       {/* HERO */}
-      <section className="bg-black text-white py-20">
+      <section className="bg-black text-white pt-40 pb-20 md:pt-48">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             Roofing FAQs
           </h1>
 
