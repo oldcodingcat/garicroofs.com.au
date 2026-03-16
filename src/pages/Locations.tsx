@@ -37,10 +37,7 @@ export default function Locations() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
 
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#b08d57]">
-                Locations
-              </p>
-
+              <span className="badge mb-6">Our Services</span>
               <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-[#1a1a1a]">
                 Locations We Service
               </h1>
