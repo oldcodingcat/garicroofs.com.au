@@ -7,18 +7,18 @@ import {
 const config: ServiceSEOConfig = {
   serviceName: "24/7 Emergency Repairs & Make Safes",
   serviceSlug: "24-7-emergency-repairs-make-safes",
-  areaName: "Sydney",
-  areaSlug: "sydney",
-  latitude: "-33.8688",
-  longitude: "151.2093",
-  state: "NSW",
+  areaName: "Melbourne",
+  areaSlug: "melbourne",
+  latitude: "-37.8136",
+  longitude: "144.9631",
+  state: "VIC",
   country: "Australia",
   path: "/services/24-7-emergency-repairs-make-safes/",
 };
 
 const content: ServiceContent = {
   hero: {
-    eyebrow: "24/7 Emergency Roofing Services Across Sydney",
+    eyebrow: "24/7 Emergency Roofing Services Across Melbourne",
     titleTop: "24/7 EMERGENCY REPAIRS",
     titleBottom: "& MAKE SAFES",
     bullets: [
@@ -30,7 +30,7 @@ const content: ServiceContent = {
   },
 
   intro: {
-    heading: "24/7 Emergency Repairs & Make Safes in Sydney",
+    heading: "24/7 Emergency Repairs & Make Safes in Melbourne",
     paragraphs: [
       "When confronted with an urgent roofing issue requiring immediate attention, you can rely on Garic Roofs’ 24/7 Emergency Repairs & Make Safes service. Our experienced team works swiftly to secure and protect your roof, preventing further structural damage.",
       "From minor repairs and urgent maintenance to extensive roof replacements, our skilled professionals are ready to provide fast, high-quality solutions with complete professionalism.",
@@ -87,53 +87,52 @@ const content: ServiceContent = {
   },
 
   testimonials: [
-  {
-    name: "James R.",
-    areaName: "Eastern Suburbs",
-    quote:
-      "We had major roof damage during a storm and needed urgent help. The team arrived quickly and secured the area to prevent further damage. Extremely professional emergency service.",
-    rating: 5,
-  },
-  {
-    name: "Daniel M.",
-    areaName: "Bondi",
-    quote:
-      "After a storm ripped part of our roof off at 2am, their emergency team arrived quickly and made everything safe before the rain got worse. Professional, calm and very efficient.",
-    rating: 5,
-  },
-  {
-    name: "Sarah L.",
-    areaName: "Parramatta",
-    quote:
-      "We had water pouring through the ceiling after heavy rain. They responded the same night and secured the damaged section immediately. Fantastic emergency service.",
-    rating: 5,
-  },
-  {
-    name: "Michael T.",
-    areaName: "Chatswood",
-    quote:
-      "A fallen tree branch punctured our roof during a storm. Their team arrived fast, removed the debris and installed a temporary make-safe repair to stop further damage.",
-    rating: 5,
-  },
-  {
-    name: "Karen W.",
-    areaName: "Sutherland",
-    quote:
-      "Called them late in the evening after noticing serious roof damage from strong winds. They were on-site within hours and made the area safe until permanent repairs could be completed.",
-    rating: 5,
-  },
-  {
-    name: "Andrew P.",
-    areaName: "Ryde",
-    quote:
-      "During a severe storm we noticed water leaking through our ceiling. Their emergency roofing team arrived quickly, secured the damaged area and prevented further water damage. Reliable and very professional service.",
-    rating: 5,
-  },
-],
-  
+    {
+      name: "James R.",
+      areaName: "Inner Melbourne",
+      quote:
+        "We had major roof damage during a storm and needed urgent help. The team arrived quickly and secured the area to prevent further damage. Extremely professional emergency service.",
+      rating: 5,
+    },
+    {
+      name: "Daniel M.",
+      areaName: "St Kilda",
+      quote:
+        "After a storm ripped part of our roof off at 2am, their emergency team arrived quickly and made everything safe before the rain got worse. Professional, calm and very efficient.",
+      rating: 5,
+    },
+    {
+      name: "Sarah L.",
+      areaName: "Richmond",
+      quote:
+        "We had water pouring through the ceiling after heavy rain. They responded the same night and secured the damaged section immediately. Fantastic emergency service.",
+      rating: 5,
+    },
+    {
+      name: "Michael T.",
+      areaName: "Essendon",
+      quote:
+        "A fallen tree branch punctured our roof during a storm. Their team arrived fast, removed the debris and installed a temporary make-safe repair to stop further damage.",
+      rating: 5,
+    },
+    {
+      name: "Karen W.",
+      areaName: "Dandenong",
+      quote:
+        "Called them late in the evening after noticing serious roof damage from strong winds. They were on-site within hours and made the area safe until permanent repairs could be completed.",
+      rating: 5,
+    },
+    {
+      name: "Andrew P.",
+      areaName: "Footscray",
+      quote:
+        "During a severe storm we noticed water leaking through our ceiling. Their emergency roofing team arrived quickly, secured the damaged area and prevented further water damage. Reliable and very professional service.",
+      rating: 5,
+    },
+  ],
 
   cta: {
-    heading: "Need Emergency Roof Repairs in Sydney?",
+    heading: "Need Emergency Roof Repairs in Melbourne?",
     text: "Garic Roofs is ready to respond 24/7 to secure and restore your roof. Contact our team now for immediate assistance.",
     buttonText: "GET A FREE QUOTE TODAY",
     buttonHref: "/contact/",
