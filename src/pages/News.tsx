@@ -18,12 +18,12 @@ type Article = {
 
 const articles: Article[] = [
   {
-    title: "How Often Should You Inspect Your Roof in Sydney?",
-    slug: "/news/roof-inspection-frequency-sydney",
+    title: "How Often Should You Inspect Your Roof in Melbourne?",
+    slug: "/news/roof-inspection-frequency-melbourne",
     category: "Roof Maintenance",
     date: "March 2026",
     excerpt:
-      "Regular roof inspections are essential to prevent leaks, storm damage and expensive repairs. Learn how often Sydney homeowners should inspect their roofs and what warning signs to look for.",
+      "Regular roof inspections are essential to prevent leaks, storm damage and expensive repairs. Learn how often Melbourne homeowners should inspect their roofs and what warning signs to look for.",
   },
   {
     title: "The Most Common Roof Leaks in Australian Homes",
@@ -42,12 +42,12 @@ const articles: Article[] = [
       "Choosing between tile roofing and metal roofing can be challenging. This guide compares durability, cost, maintenance and energy efficiency for Australian properties.",
   },
   {
-    title: "How Storms Damage Roofs in NSW",
-    slug: "/news/storm-roof-damage-nsw",
+    title: "How Storms Damage Roofs in Victoria",
+    slug: "/news/storm-roof-damage-victoria",
     category: "Storm Damage",
     date: "February 2026",
     excerpt:
-      "Severe storms across New South Wales can cause significant roof damage. Learn the signs of storm damage and when to call a roofing contractor.",
+      "Severe storms across Victoria can cause significant roof damage. Learn the signs of storm damage and when to call a roofing contractor.",
   },
   {
     title: "Signs Your Roof Needs Immediate Repair",

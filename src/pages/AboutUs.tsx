@@ -11,12 +11,12 @@ export default function AboutUs() {
   return (
     <>
       <Helmet>
-        <title>About Us | Sydney Elite Roofing Painting</title>
+        <title>About Us | Melbourne Elite Roofing Painting</title>
         <meta
           name="description"
-          content="Learn more about Sydney Elite Roofing Painting, trusted roofing specialists providing roof painting, roof restoration and roof repairs across Sydney."
+          content="Learn more about Melbourne Elite Roofing Painting, trusted roofing specialists providing roof painting, roof restoration and roof repairs across Melbourne."
         />
-        <link rel="canonical" href="https://sydneyeliteroofingpainting.com.au/about-us" />
+        <link rel="canonical" href="https://garicroofs.com.au/about-us" />
       </Helmet>
 
       <Header />
@@ -29,13 +29,13 @@ export default function AboutUs() {
           </p>
 
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Trusted Roofing Specialists in Sydney
+            Trusted Roofing Specialists in Melbourne
           </h1>
 
           <p className="text-lg text-gray-300 max-w-3xl">
-            Sydney Elite Roofing Painting is a team of experienced roofing
+            Melbourne Elite Roofing Painting is a team of experienced roofing
             professionals dedicated to delivering high-quality roof painting,
-            roof restoration, and roof repair services across Sydney. Our goal
+            roof restoration, and roof repair services across Melbourne. Our goal
             is simple: extend the life of your roof while improving the overall
             appearance and protection of your property.
           </p>
@@ -51,11 +51,11 @@ export default function AboutUs() {
             </h2>
 
             <p className="text-gray-600 mb-6">
-              With years of experience in the roofing industry, Sydney Elite
+              With years of experience in the roofing industry, Melbourne Elite
               Roofing Painting has built a reputation for reliability,
               craftsmanship, and attention to detail. We specialise in roof
               painting, roof cleaning, roof restoration and roof repairs for
-              residential and commercial properties throughout Sydney.
+              residential and commercial properties throughout Melbourne.
             </p>
 
             <p className="text-gray-600 mb-6">
@@ -82,7 +82,7 @@ export default function AboutUs() {
               <li>✔ Experienced roofing professionals</li>
               <li>✔ High-quality roof coatings and materials</li>
               <li>✔ Competitive and transparent pricing</li>
-              <li>✔ Reliable service across Sydney</li>
+              <li>✔ Reliable service across Melbourne</li>
               <li>✔ Long-lasting roof restoration solutions</li>
             </ul>
           </div>
@@ -146,23 +146,23 @@ export default function AboutUs() {
 
           <p className="text-gray-600 mb-6">
             Our mission is to provide dependable roofing solutions that protect
-            homes and businesses across Sydney. We believe that a properly
+            homes and businesses across Melbourne. We believe that a properly
             maintained roof is essential for the safety, energy efficiency and
             long-term value of any property.
           </p>
 
           <p className="text-gray-600">
             By combining expert workmanship, high-quality materials and honest
-            customer service, Sydney Elite Roofing Painting continues to be a
+            customer service, Melbourne Elite Roofing Painting continues to be a
             trusted choice for roof painting and roof restoration services in
-            Sydney.
+            Melbourne.
           </p>
 
         </div>
       </section>
 
       {/* CTA */}
-      <CTA /> 
+      <CTA />
 
       <Footer />
       <FloatingBanner />

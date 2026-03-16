@@ -35,7 +35,7 @@ const completedJobs: CompletedJob[] = [
   {
     id: "4513",
     title: "Metal Re-Roof Project",
-    location: "Hornsby Heights",
+    location: "Doncaster",
     service: "Roof Replacement / Metal Re-Roof",
     intro:
       "This completed roofing project involved replacing an ageing tiled roof with a modern corrugated metal roofing system designed for long-term durability, improved weather protection, and a cleaner architectural finish.",
@@ -61,7 +61,7 @@ const completedJobs: CompletedJob[] = [
   {
     id: "6308",
     title: "Roof Restoration & Roof Painting",
-    location: "Terrey Hills",
+    location: "Brighton",
     service: "Roof Restoration / Roof Painting",
     intro:
       "This completed roof restoration project focused on extending the life of an existing tiled roof through a full clean, repair assessment, ridge capping restoration, and protective coating system.",

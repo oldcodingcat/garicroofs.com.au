@@ -25,10 +25,10 @@ const faqs = [
   {
     question: "Do you offer 24/7 emergency roof repairs?",
     answer:
-      "Yes. Our team provides 24/7 emergency roofing services across Sydney and surrounding areas. Whether it's storm damage, severe leaks, or structural hazards, we can quickly make your roof safe and prevent further damage."
+      "Yes. Our team provides 24/7 emergency roofing services across Melbourne and surrounding areas. Whether it's storm damage, severe leaks, or structural hazards, we can quickly make your roof safe and prevent further damage."
   },
   {
-    question: "How much does roof repair cost in Sydney?",
+    question: "How much does roof repair cost in Melbourne?",
     answer:
       "The cost of roof repairs depends on factors such as roof type, accessibility, damage severity, and materials required. Minor repairs may cost a few hundred dollars, while extensive repairs or partial replacements may cost more. We provide transparent quotes after inspection."
   },
@@ -40,7 +40,7 @@ const faqs = [
   {
     question: "What roofing materials do you work with?",
     answer:
-      "Our roofing specialists work with tile roofs, metal roofs, Colorbond roofs, terracotta tiles, concrete tiles, and other modern roofing systems used across Sydney homes and commercial buildings."
+      "Our roofing specialists work with tile roofs, metal roofs, Colorbond roofs, terracotta tiles, concrete tiles, and other modern roofing systems used across Melbourne homes and commercial buildings."
   },
   {
     question: "Do you provide roof inspections?",
@@ -75,7 +75,7 @@ const faqs = [
   {
     question: "What areas do you service?",
     answer:
-      "We provide roofing services across Sydney and surrounding suburbs, including Eastern Suburbs, Inner West, Northern Beaches, Western Sydney, and nearby regions."
+      "We provide roofing services across Melbourne and surrounding suburbs, including St Kilda, Richmond, Footscray, Essendon, Dandenong, and nearby regions."
   },
   {
     question: "What is roof restoration?",
@@ -163,10 +163,10 @@ export default function FAQs() {
   return (
     <>
       <Helmet>
-        <title>Roofing FAQs Sydney | Common Roofing Questions</title>
+        <title>Roofing FAQs Melbourne | Common Roofing Questions</title>
         <meta
           name="description"
-          content="Find answers to the most common roofing questions including roof repairs, roof replacements, inspections, storm damage repairs and maintenance in Sydney."
+          content="Find answers to the most common roofing questions including roof repairs, roof replacements, inspections, storm damage repairs and maintenance in Melbourne."
         />
         <link rel="canonical" href="/faqs/" />
       </Helmet>
@@ -182,7 +182,7 @@ export default function FAQs() {
 
           <p className="text-lg text-gray-300">
             Answers to the most common questions about roof repairs, roof
-            replacement, maintenance, and emergency roofing services in Sydney.
+            replacement, maintenance, and emergency roofing services in Melbourne.
           </p>
         </div>
       </section>
@@ -190,14 +190,13 @@ export default function FAQs() {
       {/* FAQ SECTION */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-6">
-
           <div className="mb-12">
             <h2 className="text-3xl font-bold mb-4">
               Frequently Asked Roofing Questions
             </h2>
 
             <p className="text-[#666666] leading-relaxed">
-              If you're looking for reliable roofing services in Sydney,
+              If you're looking for reliable roofing services in Melbourne,
               understanding how roof repairs, roof restoration, and roof
               replacements work can help you make the right decision.
               Below are answers to the most frequently asked questions from
@@ -215,7 +214,7 @@ export default function FAQs() {
       </section>
 
       {/* CTA */}
-      <CTA />  
+      <CTA />
 
       <Footer />
       <FloatingBanner />
