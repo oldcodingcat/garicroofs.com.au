@@ -85,7 +85,7 @@ export default function News() {
       <main className="bg-white">
 
         {/* HERO */}
-        <section className="py-20 bg-neutral-100">
+        <section className="pt-40 pb-20 bg-neutral-100 md:pt-48">
           <div className="max-w-6xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Roofing News, Advice & Industry Insights
